@@ -1,0 +1,141 @@
+set t_Co=256
+set nu
+set autoindent
+set cindent
+set smartindent
+set nobackup
+set ruler
+set tabstop=4
+set shiftwidth=4
+set expandtab
+set softtabstop=4
+set ignorecase
+set hlsearch
+set incsearch
+set showmode
+set history=1000
+set fileencodings=utf-8,euc-kr
+set background=dark
+set bs=2
+set nocp
+set cino+=g0
+
+syntax on
+filetype on
+
+vnoremap <TAB> >gv
+vnoremap <s-tab> <gv
+nnoremap <esc>t   :tabnew<cr>
+nnoremap <esc>1   1gt
+nnoremap <esc>2   2gt
+nnoremap <esc>3   3gt
+nnoremap <esc>4   4gt
+nnoremap <esc>5   5gt
+nnoremap <esc>6   6gt
+nnoremap <esc>7   7gt
+nnoremap <esc>8   8gt
+nnoremap <esc>9   9gt
+
+"nnoremap <LeftMouse> <nop>
+set mouse=a
+
+nnoremap <CR> o<ESC>
+nnoremap <Backspace> X
+
+"colorscheme
+"colorscheme monokai
+colorscheme molokai
+"colorscheme vividchalk
+
+nmap <F7> :NERDTree<CR>
+nmap <F8> :Tlist<CR>
+let Tlist_Use_Right_Window = 1
+nmap <F9> :call ToggleErrors()<CR>
+
+" Vundle
+set nocompatible
+filetype off
+
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+Plugin 'gmarik/Vundle.vim'
+Plugin 'taglist.vim'
+Plugin 'bling/vim-airline'
+Plugin 'The-NERD-tree'
+Plugin 'code_complete'
+Plugin 'Syntastic'
+Plugin 'Indent-Guides'
+Plugin 'mattn/emmet-vim'
+Plugin 'airblade/vim-gitgutter'
+Plugin 'wting/rust.vim'
+Plugin 'SingleCompile'
+Plugin 'fatih/vim-go'
+call vundle#end()
+filetype plugin indent on
+
+let g:indent_guides_auto_colors = 0
+let g:indent_guides_guide_size = 1
+let g:indent_guides_start_level = 2
+autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd ctermbg=244 guibg=red
+autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=240 guibg=red
+autocmd VimEnter,Colorscheme * :IndentGuidesEnable
+
+" 자동 주석 제거
+autocmd FileType * setlocal formatoptions-=ro
+
+" airline 설정
+set laststatus=2
+set t_Co=256
+"let g:airline_theme = 'badwolf'
+
+if &diff
+else
+    au BufWinLeave *.* mkview
+    au BufWinEnter *.* silent loadview
+endif
+
+au BufNewFile,BufRead *.glsl,*.fragmentshader,*.vertexshader setf glsl
+
+" Syntastic
+let g:syntastic_check_on_open = 1
+let g:syntastic_enable_signs = 1
+let g:syntastic_cpp_check_header = 1
+
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+highlight SyntasticErrorSign guifg=white guibg=red
+highlight SyntasticErrorLine guibg=#2f0000
+
+let g:syntastic_c_compiler = 'gcc'
+
+let g:syntastic_cpp_compiler = 'g++'
+let g:syntastic_cpp_compiler_options = ' -std=c++11'
+
+let g:loaded_syntastic_cpp11_gcc_checker = 1
+let g:syntastic_cpp11_compiler = executable('g++') ? 'g++' : 'clang++'
+let g:syntastic_cpp_include_dirs = [ '../external/glfw-3.0.3/include/GLFW/', 'external/glfw-3.0.3/include/GLFW/', 'external/glm-0.9.4.0/', '../external/glm-0.9.4.0/', 'external/glew-1.9.0/include/' , '../external/glew-1.9.0/include/' ]
+
+function! ToggleErrors()
+	let old_last_winnr = winnr('$')
+	lclose
+	if old_last_winnr == winnr('$')
+        " Nothing was closed, open syntastic error location panel
+	    Errors
+	endif
+endfunction
+
+au BufWinEnter *.cpp,*h syn keyword cppType shared_ptr unordered_map map vector deque queue list
+
+au BufWinEnter *.cpp,*.c,*h set et
+au BufWinEnter *.cpp,*.c,*h retab
+
+let g:html_indent_inctags = "body,head,tbody"
+
+let g:airline#extensions#syntastic#enabled = 1
+
+nmap <F10> :SCCompileRun<cr>
+let g:SingleCompile_autowrite = 0
+
+au BufWinEnter *.bsv set filetype=bsv
