@@ -11,6 +11,8 @@ cp -r colors $HOME/.vim/
 echo install vim plugins...
 vim +PluginInstall +qall
 
+#install gitconfig
+cp .gitconfig $HOME/.gitconfig
 #install oh-my-zsh
 sh -c "$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
 
