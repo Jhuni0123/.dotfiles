@@ -1,8 +1,8 @@
 set t_Co=256
 set nu
-set autoindent
+set ai
 set cindent
-set smartindent
+set si
 set nobackup
 set ruler
 set tabstop=4
@@ -19,12 +19,13 @@ set background=dark
 set bs=2
 set nocp
 set cino+=g0
+set clipboard=unnamed
 
 syntax on
 filetype on
 
-vnoremap <TAB> >gv
-vnoremap <s-tab> <gv
+"vnoremap <TAB> >gv
+"vnoremap <s-tab> <gv
 nnoremap <esc>t   :tabnew<cr>
 nnoremap <esc>1   1gt
 nnoremap <esc>2   2gt
@@ -39,7 +40,18 @@ nnoremap <esc>9   9gt
 "nnoremap <LeftMouse> <nop>
 set mouse=a
 
-nnoremap <CR> o<ESC>
+command PS vsp %:r.in|w|sp %:r.out|w|vertical resize 30|normal <C-w>w<C-w>w
+command RIO  wall|!g++ -O2 -std=c++11 -Wall -lm %:r.cpp -o %:r && ./%:r < %:r.in > %:r.out
+command RI   wall|!g++ -O2 -std=c++11 -Wall -lm %:r.cpp -o %:r && ./%:r < %:r.in
+command R    wall|!g++ -O2 -std=c++11 -Wall -lm %:r.cpp -o %:r && ./%:r
+
+command RP wall|!g++ -O2 -std=c++11 -Wall -lm %:r.cpp -o %:r && ./%:r 1.csv 2.csv < %:r.in > %:r.out
+command AR vsp turing_machine.txt|sp string.txt|sp output.txt|vertical resize 50|normal <C-w>l
+command RRIO  wall|!g++ -std=c++11 -Wall %:r.cpp -o %:r && ./%:r turing_machine.txt string.txt output.txt
+
+command PRIO wall|!python3 % < %:r.in > %:r.out
+
+nnoremap<CR> o<ESC>
 nnoremap <Backspace> X
 
 "colorscheme
@@ -47,6 +59,7 @@ nnoremap <Backspace> X
 colorscheme molokai
 "colorscheme vividchalk
 
+map <C-a> ggVG
 nmap <F7> :NERDTree<CR>
 nmap <F8> :Tlist<CR>
 let Tlist_Use_Right_Window = 1
@@ -59,17 +72,20 @@ filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
-Plugin 'taglist.vim'
+"Plugin 'taglist.vim'
 Plugin 'bling/vim-airline'
 Plugin 'The-NERD-tree'
-Plugin 'code_complete'
+"Plugin 'code_complete'
 Plugin 'Syntastic'
 Plugin 'Indent-Guides'
 Plugin 'mattn/emmet-vim'
 Plugin 'airblade/vim-gitgutter'
+Plugin 'ervandew/supertab'
 Plugin 'wting/rust.vim'
 Plugin 'SingleCompile'
 Plugin 'fatih/vim-go'
+Plugin 'octol/vim-cpp-enhanced-highlight'
+"Plugin 'Valloric/YouCompleteMe'
 call vundle#end()
 filetype plugin indent on
 
@@ -88,11 +104,11 @@ set laststatus=2
 set t_Co=256
 "let g:airline_theme = 'badwolf'
 
-if &diff
-else
-    au BufWinLeave *.* mkview
-    au BufWinEnter *.* silent loadview
-endif
+"if &diff
+"else
+"    au BufWinLeave *.* mkview
+"    au BufWinEnter *.* silent loadview
+"endif
 
 au BufNewFile,BufRead *.glsl,*.fragmentshader,*.vertexshader setf glsl
 
@@ -131,7 +147,7 @@ au BufWinEnter *.cpp,*h syn keyword cppType shared_ptr unordered_map map vector 
 au BufWinEnter *.cpp,*.c,*h set et
 au BufWinEnter *.cpp,*.c,*h retab
 
-let g:html_indent_inctags = "body,head,tbody"
+"let g:html_indent_inctags = "body,head,tbody"
 
 let g:airline#extensions#syntastic#enabled = 1
 
@@ -139,3 +155,11 @@ nmap <F10> :SCCompileRun<cr>
 let g:SingleCompile_autowrite = 0
 
 au BufWinEnter *.bsv set filetype=bsv
+
+" Maps Coquille commands to CoqIDE default key bindings
+au FileType coq call coquille#FNMapping()
+
+" Pathogen
+execute pathogen#infect()
+
+
