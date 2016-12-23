@@ -40,6 +40,7 @@ nnoremap <esc>9   9gt
 "nnoremap <LeftMouse> <nop>
 set mouse=a
 
+"easy single-file run
 command PS vsp %:r.in|w|sp %:r.out|w|vertical resize 30|normal <C-w>w<C-w>w
 command RIO  wall|!g++ -O2 -std=c++11 -Wall -lm %:r.cpp -o %:r && ./%:r < %:r.in > %:r.out
 command RI   wall|!g++ -O2 -std=c++11 -Wall -lm %:r.cpp -o %:r && ./%:r < %:r.in
@@ -50,7 +51,6 @@ command PRIO wall|!python3 % < %:r.in > %:r.out
 nnoremap<CR> o<ESC>
 nnoremap <Backspace> X
 
-"colorscheme
 "colorscheme monokai
 colorscheme molokai
 "colorscheme vividchalk
