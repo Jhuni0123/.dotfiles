@@ -45,10 +45,6 @@ command RIO  wall|!g++ -O2 -std=c++11 -Wall -lm %:r.cpp -o %:r && ./%:r < %:r.in
 command RI   wall|!g++ -O2 -std=c++11 -Wall -lm %:r.cpp -o %:r && ./%:r < %:r.in
 command R    wall|!g++ -O2 -std=c++11 -Wall -lm %:r.cpp -o %:r && ./%:r
 
-command RP wall|!g++ -O2 -std=c++11 -Wall -lm %:r.cpp -o %:r && ./%:r 1.csv 2.csv < %:r.in > %:r.out
-command AR vsp turing_machine.txt|sp string.txt|sp output.txt|vertical resize 50|normal <C-w>l
-command RRIO  wall|!g++ -std=c++11 -Wall %:r.cpp -o %:r && ./%:r turing_machine.txt string.txt output.txt
-
 command PRIO wall|!python3 % < %:r.in > %:r.out
 
 nnoremap<CR> o<ESC>

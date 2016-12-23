@@ -20,6 +20,3 @@ zplug load
 alias gitconfig="vim ~/.gitconfig"
 alias zshrc="vim ~/.zshrc"
 alias vimrc="vim ~/.vimrc"
-alias lscolor="vim ~/.oh-my-zsh/lib/theme-and-appearance.zsh"
-alias aws="ssh -i '~/.ssh/MyAWSKey.pem' ubuntu@ec2-52-79-107-110.ap-northeast-2.compute.amazonaws.com"
-alias martini="ssh whdgnsdl887@martini.snu.ac.kr"
