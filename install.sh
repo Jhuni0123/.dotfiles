@@ -8,11 +8,6 @@ ln .gitconfig ~/.gitconfig
 
 vim +PluginInstall +qall
 
-git clone https://github.com/tomasr/molokai.git
-mkdir -p ~/.vim/colors
-cp ./molokai/colors/molokai.vim ~/.vim/colors/
-rm -rf ./molokai
-
 sh -c "$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
 
 git clone https://github.com/b4b4r07/zplug ~/.zplug

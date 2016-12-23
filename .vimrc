@@ -20,6 +20,7 @@ set bs=2
 set nocp
 set cino+=g0
 set clipboard=unnamed
+set autoread
 
 syntax on
 filetype on
@@ -40,7 +41,7 @@ nnoremap <esc>9   9gt
 "nnoremap <LeftMouse> <nop>
 set mouse=a
 
-"easy single-file run
+" Easy single-file run
 command PS vsp %:r.in|w|sp %:r.out|w|vertical resize 30|normal <C-w>w<C-w>w
 command RIO  wall|!g++ -O2 -std=c++11 -Wall -lm %:r.cpp -o %:r && ./%:r < %:r.in > %:r.out
 command RI   wall|!g++ -O2 -std=c++11 -Wall -lm %:r.cpp -o %:r && ./%:r < %:r.in
@@ -51,7 +52,6 @@ command PRIO wall|!python3 % < %:r.in > %:r.out
 nnoremap<CR> o<ESC>
 nnoremap <Backspace> X
 
-"colorscheme monokai
 colorscheme molokai
 "colorscheme vividchalk
 
@@ -68,6 +68,7 @@ filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
+Plugin 'tomasr/molokai'
 "Plugin 'taglist.vim'
 Plugin 'bling/vim-airline'
 Plugin 'The-NERD-tree'
@@ -77,10 +78,11 @@ Plugin 'Indent-Guides'
 Plugin 'mattn/emmet-vim'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'ervandew/supertab'
-Plugin 'wting/rust.vim'
+"Plugin 'wting/rust.vim'
 Plugin 'SingleCompile'
-Plugin 'fatih/vim-go'
+"Plugin 'fatih/vim-go'
 Plugin 'octol/vim-cpp-enhanced-highlight'
+"Plugin 'davidhalter/jedi-vim'
 "Plugin 'Valloric/YouCompleteMe'
 call vundle#end()
 filetype plugin indent on
@@ -158,4 +160,6 @@ au FileType coq call coquille#FNMapping()
 " Pathogen
 execute pathogen#infect()
 
-
+" Python Syntax
+let OPTION_NAME = 1
+let python_highlight_all = 1
