@@ -23,7 +23,7 @@ set clipboard=unnamed
 set autoread
 
 syntax on
-filetype on
+filetype plugin indent on
 
 "vnoremap <TAB> >gv
 "vnoremap <s-tab> <gv
@@ -48,6 +48,7 @@ command RI   wall|!g++ -O2 -std=c++11 -Wall -lm %:r.cpp -o %:r && ./%:r < %:r.in
 command R    wall|!g++ -O2 -std=c++11 -Wall -lm %:r.cpp -o %:r && ./%:r
 
 command PRIO wall|!python3 % < %:r.in > %:r.out
+command PR wall|!python3 %
 
 nnoremap<CR> o<ESC>
 nnoremap <Backspace> X
@@ -82,6 +83,7 @@ Plugin 'ervandew/supertab'
 Plugin 'SingleCompile'
 "Plugin 'fatih/vim-go'
 Plugin 'octol/vim-cpp-enhanced-highlight'
+"Plugin 'klen/python-mode'
 "Plugin 'davidhalter/jedi-vim'
 "Plugin 'Valloric/YouCompleteMe'
 call vundle#end()
