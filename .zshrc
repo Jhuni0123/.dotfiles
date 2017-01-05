@@ -1,16 +1,16 @@
 ##oh-my-zsh##
 export ZSH=$HOME/.oh-my-zsh
 
-plugins=(git osx brew zsh-syntax-highlighting zsh-completions)
+plugins=(git osx brew zsh-completions)
 
 source $ZSH/oh-my-zsh.sh
 
 
 ##zplug##
-source ~/.zplug/zplug
+source ~/.zplug/init.zsh
 
-#zplug "zsh-users/zsh-syntax-highlighting", of:zsh-syntax-highlighting.zsh
-zplug "simnalamburt/shellder"
+zplug "zsh-users/zsh-syntax-highlighting", use:zsh-syntax-highlighting.zsh
+zplug "simnalamburt/shellder", as:theme
 
 if ! zplug check; then; zplug install; fi
 zplug load
