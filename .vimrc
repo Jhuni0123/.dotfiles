@@ -70,10 +70,8 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
 Plugin 'tomasr/molokai'
-"Plugin 'taglist.vim'
 Plugin 'bling/vim-airline'
 Plugin 'The-NERD-tree'
-"Plugin 'code_complete'
 Plugin 'Syntastic'
 Plugin 'Indent-Guides'
 Plugin 'mattn/emmet-vim'
@@ -81,11 +79,11 @@ Plugin 'airblade/vim-gitgutter'
 Plugin 'ervandew/supertab'
 "Plugin 'wting/rust.vim'
 Plugin 'SingleCompile'
+Plugin 'nvie/vim-flake8'
 "Plugin 'fatih/vim-go'
 Plugin 'octol/vim-cpp-enhanced-highlight'
 "Plugin 'klen/python-mode'
 "Plugin 'davidhalter/jedi-vim'
-"Plugin 'Valloric/YouCompleteMe'
 call vundle#end()
 filetype plugin indent on
 
