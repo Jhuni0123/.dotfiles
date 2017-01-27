@@ -78,6 +78,7 @@ Plugin 'mattn/emmet-vim'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'ervandew/supertab'
 Plugin 'chase/vim-ansible-yaml'
+Plugin 'pangloss/vim-javascript'
 Plugin 'mxw/vim-jsx'
 "Plugin 'wting/rust.vim'
 Plugin 'SingleCompile'
@@ -168,3 +169,6 @@ let python_highlight_all = 1
 
 " vim-flake8 option
 let g:flake8_max_line_length=120
+
+" vim-jsx
+let g:jsx_ext_required = 0
