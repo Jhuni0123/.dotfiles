@@ -6,9 +6,9 @@ sh -c "$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/to
 
 git clone https://github.com/b4b4r07/zplug ~/.zplug
 
-ln .vimrc ~/.vimrc
-ln .zshrc ~/.zshrc
-ln .gitconfig ~/.gitconfig
+ln -f .vimrc ~/.vimrc
+ln -f .zshrc ~/.zshrc
+ln -f .gitconfig ~/.gitconfig
 
 vim +PluginInstall +qall
 
