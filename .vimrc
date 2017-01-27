@@ -14,7 +14,7 @@ set hlsearch
 set incsearch
 set showmode
 set history=1000
-set fileencodings=utf-8,euc-kr
+set fileencodings=utf-8,euc-kr,utf-16le
 set background=dark
 set bs=2
 set nocp
@@ -77,6 +77,8 @@ Plugin 'Indent-Guides'
 Plugin 'mattn/emmet-vim'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'ervandew/supertab'
+Plugin 'chase/vim-ansible-yaml'
+Plugin 'mxw/vim-jsx'
 "Plugin 'wting/rust.vim'
 Plugin 'SingleCompile'
 Plugin 'nvie/vim-flake8'
@@ -163,3 +165,6 @@ execute pathogen#infect()
 " Python Syntax
 let OPTION_NAME = 1
 let python_highlight_all = 1
+
+" vim-flake8 option
+let g:flake8_max_line_length=120
