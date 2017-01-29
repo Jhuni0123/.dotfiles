@@ -60,8 +60,6 @@ colorscheme molokai
 map <C-a> ggVG
 
 nmap <F7> :NERDTree<CR>
-nmap <F8> :Tlist<CR>
-let Tlist_Use_Right_Window = 1
 nmap <F9> :call ToggleErrors()<CR>
 
 " Vundle
@@ -74,9 +72,9 @@ Plugin 'gmarik/Vundle.vim'
 Plugin 'tomasr/molokai'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
-Plugin 'The-NERD-tree'
-Plugin 'Syntastic'
-Plugin 'Indent-Guides'
+Plugin 'vim-syntastic/syntastic'
+Plugin 'scrooloose/nerdtree'
+Plugin 'nathanaelkane/vim-indent-guides'
 Plugin 'mattn/emmet-vim'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'ervandew/supertab'
@@ -104,17 +102,9 @@ autocmd FileType * setlocal formatoptions-=ro
 " vim-airline
 set laststatus=2
 set t_Co=256
-let g:airline#extensions#syntastic#enabled = 1
 let g:airline_theme = 'badwolf'
 let g:airline_powerline_fonts = 1
-
-if &diff
-else
-    au BufWinLeave *.* mkview
-    au BufWinEnter *.* silent loadview
-endif
-
-au BufNewFile,BufRead *.glsl,*.fragmentshader,*.vertexshader setf glsl
+let g:airline#extensions#syntastic#enabled = 1
 
 " Syntastic
 let g:syntastic_check_on_open = 1
@@ -150,10 +140,6 @@ au BufWinEnter *.cpp,*h syn keyword cppType shared_ptr unordered_map map vector 
 
 au BufWinEnter *.cpp,*.c,*h set et
 au BufWinEnter *.cpp,*.c,*h retab
-
-"let g:html_indent_inctags = "body,head,tbody"
-
-au BufWinEnter *.bsv set filetype=bsv
 
 " Maps Coquille commands to CoqIDE default key bindings
 au FileType coq call coquille#FNMapping()
