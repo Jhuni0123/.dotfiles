@@ -127,6 +127,8 @@ let g:loaded_syntastic_cpp11_gcc_checker = 1
 let g:syntastic_cpp11_compiler = executable('g++') ? 'g++' : 'clang++'
 let g:syntastic_cpp_include_dirs = [ '../external/glfw-3.0.3/include/GLFW/', 'external/glfw-3.0.3/include/GLFW/', 'external/glm-0.9.4.0/', '../external/glm-0.9.4.0/', 'external/glew-1.9.0/include/' , '../external/glew-1.9.0/include/' ]
 
+let g:syntastic_javascript_checkers = ['eslint']
+
 function! ToggleErrors()
     let old_last_winnr = winnr('$')
     lclose
