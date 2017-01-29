@@ -22,12 +22,17 @@ set cino+=g0
 set clipboard=unnamed
 set autoread
 
+autocmd Filetype html,javascript setlocal ts=2 sw=2 expandtab
+
 syntax on
 filetype plugin indent on
 
-"vnoremap <TAB> >gv
-"vnoremap <s-tab> <gv
-nnoremap <esc>t   :tabnew<cr>
+vnoremap <TAB>    >gv
+vnoremap <S-TAB>  <gv
+
+nnoremap <TAB>    :tabn<CR>
+nnoremap <S-TAB>  :tabp<CR>
+nnoremap <esc>t   :tabnew<CR>
 nnoremap <esc>1   1gt
 nnoremap <esc>2   2gt
 nnoremap <esc>3   3gt
@@ -105,6 +110,10 @@ set t_Co=256
 let g:airline_theme = 'badwolf'
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#syntastic#enabled = 1
+
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#show_buffers = 1
+let g:airline#extensions#tabline#buffer_min_count = 2
 
 " Syntastic
 let g:syntastic_check_on_open = 1
