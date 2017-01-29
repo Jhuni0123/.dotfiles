@@ -59,7 +59,7 @@ colorscheme molokai
 
 map <C-a> ggVG
 
-nmap <F7> :NERDTree<CR>
+nmap <F8> :NERDTree<CR>
 nmap <F9> :call ToggleErrors()<CR>
 
 " Vundle
@@ -148,10 +148,6 @@ au FileType coq call coquille#FNMapping()
 
 " Pathogen
 execute pathogen#infect()
-
-" Python Syntax
-let OPTION_NAME = 1
-let python_highlight_all = 1
 
 " vim-flake8 option
 let g:flake8_max_line_length=120
