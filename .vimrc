@@ -90,6 +90,7 @@ Plugin 'octol/vim-cpp-enhanced-highlight'
 call vundle#end()
 filetype plugin indent on
 
+" Indent-Guides
 let g:indent_guides_auto_colors = 0
 let g:indent_guides_guide_size = 1
 let g:indent_guides_start_level = 2
@@ -100,16 +101,18 @@ autocmd VimEnter,Colorscheme * :IndentGuidesEnable
 " 자동 주석 제거
 autocmd FileType * setlocal formatoptions-=ro
 
-" airline 설정
+" vim-airline
 set laststatus=2
 set t_Co=256
-"let g:airline_theme = 'badwolf'
+let g:airline#extensions#syntastic#enabled = 1
+let g:airline_theme = 'badwolf'
+let g:airline_powerline_fonts = 1
 
-"if &diff
-"else
-"    au BufWinLeave *.* mkview
-"    au BufWinEnter *.* silent loadview
-"endif
+if &diff
+else
+    au BufWinLeave *.* mkview
+    au BufWinEnter *.* silent loadview
+endif
 
 au BufNewFile,BufRead *.glsl,*.fragmentshader,*.vertexshader setf glsl
 
@@ -149,8 +152,6 @@ au BufWinEnter *.cpp,*.c,*h set et
 au BufWinEnter *.cpp,*.c,*h retab
 
 "let g:html_indent_inctags = "body,head,tbody"
-
-let g:airline#extensions#syntastic#enabled = 1
 
 au BufWinEnter *.bsv set filetype=bsv
 

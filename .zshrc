@@ -24,3 +24,5 @@ alias vimrc="vim ~/.vimrc"
 alias vi="vim"
 alias mv="mv -i"
 alias cp="cp -i"
+
+export TERM=xterm-256color
