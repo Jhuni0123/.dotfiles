@@ -155,7 +155,7 @@ au BufWinEnter *.cpp,*.c,*h retab
 au FileType coq call coquille#FNMapping()
 
 " Pathogen
-execute pathogen#infect()
+silent! execute pathogen#infect()
 
 " vim-flake8 option
 let g:flake8_max_line_length=120
