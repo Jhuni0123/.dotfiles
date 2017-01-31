@@ -75,18 +75,19 @@ Plugin 'gmarik/Vundle.vim'
 Plugin 'tomasr/molokai'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
-Plugin 'vim-syntastic/syntastic'
 Plugin 'scrooloose/nerdtree'
 Plugin 'nathanaelkane/vim-indent-guides'
-Plugin 'mattn/emmet-vim'
-Plugin 'airblade/vim-gitgutter'
-Plugin 'ervandew/supertab'
+Plugin 'vim-syntastic/syntastic'
 Plugin 'chase/vim-ansible-yaml'
 Plugin 'pangloss/vim-javascript'
 Plugin 'mxw/vim-jsx'
+Plugin 'sindresorhus/vim-xo'
 Plugin 'nvie/vim-flake8'
 Plugin 'octol/vim-cpp-enhanced-highlight'
 Plugin 'editorconfig/editorconfig-vim'
+Plugin 'mattn/emmet-vim'
+Plugin 'airblade/vim-gitgutter'
+Plugin 'ervandew/supertab'
 "Plugin 'klen/python-mode'
 "Plugin 'davidhalter/jedi-vim'
 call vundle#end()
@@ -135,7 +136,7 @@ let g:loaded_syntastic_cpp11_gcc_checker = 1
 let g:syntastic_cpp11_compiler = executable('g++') ? 'g++' : 'clang++'
 let g:syntastic_cpp_include_dirs = [ '../external/glfw-3.0.3/include/GLFW/', 'external/glfw-3.0.3/include/GLFW/', 'external/glm-0.9.4.0/', '../external/glm-0.9.4.0/', 'external/glew-1.9.0/include/' , '../external/glew-1.9.0/include/' ]
 
-let g:syntastic_javascript_checkers = ['eslint']
+let g:syntastic_javascript_checkers = ['eslint', 'xo']
 
 function! ToggleErrors()
     let old_last_winnr = winnr('$')
