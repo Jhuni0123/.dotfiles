@@ -88,6 +88,7 @@ Plugin 'editorconfig/editorconfig-vim'
 Plugin 'mattn/emmet-vim'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'ervandew/supertab'
+Plugin 'jiangmiao/auto-pairs'
 "Plugin 'klen/python-mode'
 "Plugin 'davidhalter/jedi-vim'
 call vundle#end()
