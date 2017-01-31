@@ -1,14 +1,14 @@
 set t_Co=256
-set nu
-set ai
+set number
+set autoindent
 set cindent
-set si
+set smartindent
 set nobackup
 set ruler
 set tabstop=4
 set shiftwidth=4
-set expandtab
 set softtabstop=4
+set expandtab
 set ignorecase
 set hlsearch
 set incsearch
@@ -16,9 +16,9 @@ set showmode
 set history=1000
 set fileencodings=utf-8,euc-kr,utf-16le
 set background=dark
-set bs=2
-set nocp
-set cino+=g0
+set backspace=2
+set nocompatible
+set cino=g0j1J1
 set clipboard=unnamed
 set autoread
 
@@ -147,14 +147,6 @@ function! ToggleErrors()
         Errors
     endif
 endfunction
-
-au BufWinEnter *.cpp,*h syn keyword cppType shared_ptr unordered_map map vector deque queue list
-
-au BufWinEnter *.cpp,*.c,*h set et
-au BufWinEnter *.cpp,*.c,*h retab
-
-" Maps Coquille commands to CoqIDE default key bindings
-au FileType coq call coquille#FNMapping()
 
 " Pathogen
 silent! execute pathogen#infect()
