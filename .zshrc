@@ -7,7 +7,7 @@ source $ZSH/oh-my-zsh.sh
 
 
 #zplug#
-export ZPLUG_HOME=/usr/local/opt/zplug
+export ZPLUG_HOME=~/.zplug
 source $ZPLUG_HOME/init.zsh
 
 zplug "zsh-users/zsh-syntax-highlighting", defer:2
