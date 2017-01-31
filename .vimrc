@@ -22,8 +22,6 @@ set cino+=g0
 set clipboard=unnamed
 set autoread
 
-autocmd Filetype html,javascript setlocal ts=2 sw=2 expandtab
-
 syntax on
 filetype plugin indent on
 
@@ -88,6 +86,7 @@ Plugin 'pangloss/vim-javascript'
 Plugin 'mxw/vim-jsx'
 Plugin 'nvie/vim-flake8'
 Plugin 'octol/vim-cpp-enhanced-highlight'
+Plugin 'editorconfig/editorconfig-vim'
 "Plugin 'klen/python-mode'
 "Plugin 'davidhalter/jedi-vim'
 call vundle#end()
