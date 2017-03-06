@@ -65,33 +65,32 @@ map <C-a> ggVG
 nmap <F8> :NERDTree<CR>
 nmap <F9> :call ToggleErrors()<CR>
 
-" Vundle
-set nocompatible
-filetype off
-
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-Plugin 'gmarik/Vundle.vim'
-Plugin 'tomasr/molokai'
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
-Plugin 'scrooloose/nerdtree'
-Plugin 'nathanaelkane/vim-indent-guides'
-Plugin 'vim-syntastic/syntastic'
-Plugin 'chase/vim-ansible-yaml'
-Plugin 'pangloss/vim-javascript'
-Plugin 'mxw/vim-jsx'
-Plugin 'sindresorhus/vim-xo'
-Plugin 'nvie/vim-flake8'
-Plugin 'octol/vim-cpp-enhanced-highlight'
-Plugin 'editorconfig/editorconfig-vim'
-Plugin 'mattn/emmet-vim'
-Plugin 'airblade/vim-gitgutter'
-Plugin 'ervandew/supertab'
-Plugin 'jiangmiao/auto-pairs'
-"Plugin 'klen/python-mode'
-"Plugin 'davidhalter/jedi-vim'
-call vundle#end()
+" vim-plug
+call plug#begin('~/.vim/plugged')
+"Plug 'gmarik/Vundle.vim'
+Plug 'tomasr/molokai'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'scrooloose/nerdtree'
+Plug 'nathanaelkane/vim-indent-guides'
+Plug 'vim-syntastic/syntastic'
+Plug 'chase/vim-ansible-yaml'
+Plug 'pangloss/vim-javascript'
+Plug 'mxw/vim-jsx'
+Plug 'sindresorhus/vim-xo'
+Plug 'nvie/vim-flake8'
+Plug 'octol/vim-cpp-enhanced-highlight'
+Plug 'editorconfig/editorconfig-vim'
+Plug 'mattn/emmet-vim'
+Plug 'airblade/vim-gitgutter'
+Plug 'ervandew/supertab'
+"Plug 'jiangmiao/auto-pairs'
+Plug 'the-lambda-church/coquille'
+Plug 'ElmCast/elm-vim'
+"Plug 'let-def/vimbufsync'
+"Plug 'klen/python-mode'
+"Plug 'davidhalter/jedi-vim'
+call plug#end()
 filetype plugin indent on
 
 " Indent-Guides
@@ -139,6 +138,11 @@ let g:syntastic_cpp_include_dirs = [ '../external/glfw-3.0.3/include/GLFW/', 'ex
 
 let g:syntastic_javascript_checkers = ['eslint', 'xo']
 
+" syntastic for elm
+let g:elm_syntastic_show_warnings = 1
+let g:syntastic_elm_checkers = ['elm_make']
+
+" syntastic toggle errors
 function! ToggleErrors()
     let old_last_winnr = winnr('$')
     lclose
@@ -156,3 +160,10 @@ let g:flake8_max_line_length=120
 
 " vim-jsx
 let g:jsx_ext_required = 0
+
+" Coquille
+au FileType coq call coquille#FNMapping()
+"au FileType coq call coquille#CoqideMapping()
+
+" elm-vim & elm-format
+let g:elm_format_autosave = 0
