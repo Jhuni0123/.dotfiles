@@ -19,7 +19,7 @@ set background=dark
 set backspace=2
 set nocompatible
 set cino=g0j1J1
-set clipboard=unnamed
+set clipboard=unnamedplus
 set autoread
 
 syntax on
@@ -57,11 +57,6 @@ command PR wall|!python3 %
 nnoremap <CR> o<ESC>
 nnoremap <Backspace> X
 
-colorscheme molokai
-"colorscheme vividchalk
-
-map <C-a> ggVG
-
 nmap <F8> :NERDTree<CR>
 nmap <F9> :call ToggleErrors()<CR>
 
@@ -93,6 +88,8 @@ Plug 'ElmCast/elm-vim'
 call plug#end()
 filetype plugin indent on
 
+colorscheme molokai
+
 " Indent-Guides
 let g:indent_guides_auto_colors = 0
 let g:indent_guides_guide_size = 1
@@ -100,9 +97,6 @@ let g:indent_guides_start_level = 2
 autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd ctermbg=244 guibg=red
 autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=240 guibg=red
 autocmd VimEnter,Colorscheme * :IndentGuidesEnable
-
-" 자동 주석 제거
-autocmd FileType * setlocal formatoptions-=ro
 
 " vim-airline
 set laststatus=2

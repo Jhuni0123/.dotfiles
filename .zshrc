@@ -1,21 +1,17 @@
 ##oh-my-zsh##
-export ZSH=$HOME/.oh-my-zsh
-
-plugins=(git osx brew zsh-completions)
-
+export ZSH=~/.oh-my-zsh
 source $ZSH/oh-my-zsh.sh
 
-
 #zplug#
-export ZPLUG_HOME=~/.zplug
-source $ZPLUG_HOME/init.zsh
+source ~/.zplug/init.zsh
 
 zplug "zsh-users/zsh-syntax-highlighting", defer:2
 zplug "simnalamburt/shellder", as:theme
+zplug "zsh-users/zsh-completions", depth:1
+zplug "simnalamburt/cgitc"
 
 if ! zplug check; then; zplug install; fi
 zplug load
-
 
 ##alias##
 alias gitconfig="vim ~/.gitconfig"

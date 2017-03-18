@@ -7,14 +7,14 @@ curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
 # install oh-my-zsh
 sh -c "$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
 
-# install zplug
-git clone https://github.com/b4b4r07/zplug ~/.zplug
-
 # link force dotfiles
 ln -f .vimrc ~/.vimrc
 ln -f .zshrc ~/.zshrc
 ln -f .gitconfig ~/.gitconfig
 
-vim +PluginInstall +qall
+# install zplug
+curl -sL zplug.sh/installer | zsh
+
+vim +PlugInstall +qall
 
 sudo chsh -s $(which zsh)
