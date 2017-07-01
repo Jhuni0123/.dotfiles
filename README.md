@@ -1,6 +1,7 @@
-> Jhuni's own dotfiles
+> My personal dotfiles for unix environment
 
-**Require** - `git` & `zsh`
+### Requirement
+- install  `git`, `zsh`, `curl`
 ### Installation
 
 ```sh
