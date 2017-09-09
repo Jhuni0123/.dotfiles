@@ -47,9 +47,10 @@ set mouse=a
 " Easy single-file run
 command PS vsp %:r.in|w|sp %:r.out|w|vertical resize 30|normal <C-w>w<C-w>w
 
-command RIO  wall|!g++ -O2 -std=c++11 -Wall -lm %:r.cpp -o %:r && ./%:r < %:r.in > %:r.out
-command RI   wall|!g++ -O2 -std=c++11 -Wall -lm %:r.cpp -o %:r && ./%:r < %:r.in
-command R    wall|!g++ -O2 -std=c++11 -Wall -lm %:r.cpp -o %:r && ./%:r
+command CRIO  wall|!gcc -Wall -lm %:r.c -o %:r && ./%:r < %:r.in > %:r.out
+command RIO  wall|!g++ -O2 -std=c++14 -Wall -lm %:r.cpp -o %:r && ./%:r < %:r.in > %:r.out
+command RI   wall|!g++ -O2 -std=c++14 -Wall -lm %:r.cpp -o %:r && ./%:r < %:r.in
+command R    wall|!g++ -O2 -std=c++14 -Wall -lm %:r.cpp -o %:r && ./%:r
 
 command PRIO wall|!python3 % < %:r.in > %:r.out
 command PR wall|!python3 %
@@ -78,10 +79,10 @@ Plug 'octol/vim-cpp-enhanced-highlight'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'mattn/emmet-vim'
 Plug 'airblade/vim-gitgutter'
-Plug 'ervandew/supertab'
-"Plug 'jiangmiao/auto-pairs'
 Plug 'the-lambda-church/coquille'
 Plug 'ElmCast/elm-vim'
+Plug 'posva/vim-vue'
+"Plug 'Valloric/YouCompleteMe'
 "Plug 'let-def/vimbufsync'
 "Plug 'klen/python-mode'
 "Plug 'davidhalter/jedi-vim'
@@ -113,6 +114,7 @@ let g:airline#extensions#tabline#buffer_min_count = 2
 let g:syntastic_check_on_open = 1
 let g:syntastic_enable_signs = 1
 let g:syntastic_cpp_check_header = 1
+let g:syntastic_check_on_wq = 1
 
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
@@ -131,6 +133,7 @@ let g:syntastic_cpp11_compiler = executable('g++') ? 'g++' : 'clang++'
 let g:syntastic_cpp_include_dirs = [ '../external/glfw-3.0.3/include/GLFW/', 'external/glfw-3.0.3/include/GLFW/', 'external/glm-0.9.4.0/', '../external/glm-0.9.4.0/', 'external/glew-1.9.0/include/' , '../external/glew-1.9.0/include/' ]
 
 let g:syntastic_javascript_checkers = ['eslint', 'xo']
+"let g:syntastic_python_checkers = ['flake8']
 
 " syntastic for elm
 let g:elm_syntastic_show_warnings = 1
