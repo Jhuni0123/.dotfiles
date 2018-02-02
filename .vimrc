@@ -19,7 +19,7 @@ set background=dark
 set backspace=2
 set nocompatible
 set cino=g0j1J1
-set clipboard=unnamedplus
+set clipboard=unnamed
 set autoread
 
 syntax on
@@ -42,7 +42,7 @@ nnoremap <esc>8   8gt
 nnoremap <esc>9   9gt
 
 "nnoremap <LeftMouse> <nop>
-set mouse=a
+set mouse+=an
 
 " Easy single-file run
 command PS vsp %:r.in|w|sp %:r.out|w|vertical resize 30|normal <C-w>w<C-w>w
@@ -55,8 +55,15 @@ command R    wall|!g++ -O2 -std=c++14 -Wall -lm %:r.cpp -o %:r && ./%:r
 command PRIO wall|!python3 % < %:r.in > %:r.out
 command PR wall|!python3 %
 
+command MLR wall|!ocaml %:r.ml
+
 nnoremap <CR> o<ESC>
 nnoremap <Backspace> X
+
+colorscheme molokai
+"colorscheme vividchalk
+
+map <C-a> ggVG
 
 nmap <F8> :NERDTree<CR>
 nmap <F9> :call ToggleErrors()<CR>
@@ -82,14 +89,14 @@ Plug 'airblade/vim-gitgutter'
 Plug 'the-lambda-church/coquille'
 Plug 'ElmCast/elm-vim'
 Plug 'posva/vim-vue'
+Plug 'vim-latex/vim-latex'
+Plug 'elixir-editors/vim-elixir'
 "Plug 'Valloric/YouCompleteMe'
 "Plug 'let-def/vimbufsync'
 "Plug 'klen/python-mode'
 "Plug 'davidhalter/jedi-vim'
 call plug#end()
 filetype plugin indent on
-
-colorscheme molokai
 
 " Indent-Guides
 let g:indent_guides_auto_colors = 0
@@ -98,6 +105,9 @@ let g:indent_guides_start_level = 2
 autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd ctermbg=244 guibg=red
 autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=240 guibg=red
 autocmd VimEnter,Colorscheme * :IndentGuidesEnable
+
+" 자동 주석 제거
+autocmd FileType * setlocal formatoptions-=ro
 
 " vim-airline
 set laststatus=2
@@ -164,3 +174,5 @@ au FileType coq call coquille#FNMapping()
 
 " elm-vim & elm-format
 let g:elm_format_autosave = 0
+
+au FileType tex imap <leader>Align \begin{align*}<CR>\end{align*}<<-->><Esc>O
