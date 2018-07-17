@@ -60,9 +60,6 @@ command MLR wall|!ocaml %:r.ml
 nnoremap <CR> o<ESC>
 nnoremap <Backspace> X
 
-colorscheme molokai
-"colorscheme vividchalk
-
 map <C-a> ggVG
 
 nmap <F8> :NERDTree<CR>
@@ -97,6 +94,8 @@ Plug 'elixir-editors/vim-elixir'
 "Plug 'davidhalter/jedi-vim'
 call plug#end()
 filetype plugin indent on
+
+colorscheme molokai
 
 " Indent-Guides
 let g:indent_guides_auto_colors = 0

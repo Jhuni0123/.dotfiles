@@ -13,7 +13,7 @@ ln -f .zshrc ~/.zshrc
 ln -f .gitconfig ~/.gitconfig
 
 # install zplug
-curl -sL zplug.sh/installer | zsh
+curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh
 
 vim +PlugInstall +qall
 
