@@ -14,19 +14,23 @@ set hlsearch
 set incsearch
 set showmode
 set history=1000
-set fileencodings=utf-8,euc-kr,utf-16le
 set background=dark
 set backspace=2
 set nocompatible
-set cino=g0j1J1
+"set cino=g0j1J1
 set clipboard=unnamed
 set autoread
+set smartcase
+set tags=tags
+set updatetime=100
 
 syntax on
 filetype plugin indent on
 
 vnoremap <TAB>    >gv
 vnoremap <S-TAB>  <gv
+
+nnoremap gp `[v`]
 
 nnoremap <TAB>    :tabn<CR>
 nnoremap <S-TAB>  :tabp<CR>
@@ -44,39 +48,63 @@ nnoremap <esc>9   9gt
 "nnoremap <LeftMouse> <nop>
 set mouse+=an
 
+let mapleader=","
+
+nnoremap <leader>d "_d
+
+
 " Easy single-file run
 command PS vsp %:r.in|w|sp %:r.out|w|vertical resize 30|normal <C-w>w<C-w>w
+command TEMP r ~/Documents/Codes/templates/template.%:e|normal ggddG
 
 command CRIO  wall|!gcc -Wall -lm %:r.c -o %:r && ./%:r < %:r.in > %:r.out
-command RIO  wall|!g++ -O2 -std=c++14 -Wall -lm %:r.cpp -o %:r && ./%:r < %:r.in > %:r.out
-command RI   wall|!g++ -O2 -std=c++14 -Wall -lm %:r.cpp -o %:r && ./%:r < %:r.in
-command R    wall|!g++ -O2 -std=c++14 -Wall -lm %:r.cpp -o %:r && ./%:r
+command RIO  wall|!g++ -O2 -std=c++17 -Wall -lm %:r.cpp -o %:r && ./%:r < %:r.in > %:r.out
+command RI   wall|!g++ -O2 -std=c++17 -Wall -lm %:r.cpp -o %:r && ./%:r < %:r.in
+command R    wall|!g++ -O2 -std=c++17 -Wall -lm %:r.cpp -o %:r && ./%:r
 
-command PRIO wall|!python3 % < %:r.in > %:r.out
-command PR wall|!python3 %
+command RRIO wall|!rustc %:r.rs && ./%:r < %:r.in > %:r.out
+command RRI  wall|!rustc %:r.rs && ./%:r < %:r.in
+command RR   wall|!rustc %:r.rs && ./%:r
+
+command PRIO wall|!python %:r.py < %:r.in > %:r.out
+command PRIOE wall|!python %:r.py < %:r.in > %:r.out 2> %:r.err
+command PR wall|!python %:r.py
+command PI wall|!python -i %:r.py
+
+command P2RIO wall|!python2 %:r.py < %:r.in > %:r.out
+command P2R wall|!python2 %:r.py
 
 command MLR wall|!ocaml %:r.ml
+command MLRIO wall|!ocaml %:r.ml < %:r.in > %:r.out
 
-nnoremap <CR> o<ESC>
-nnoremap <Backspace> X
+command HSRIO wall|!ghc %:r.hs -o %:r -lm && ./%:r < %:r.in > %:r.out
 
-map <C-a> ggVG
+command TSR wall|!tsc %:r.ts && node %:r.js
 
-nmap <F8> :NERDTree<CR>
+command SCRIO wall|!scala %:r.scala < %:r.in > %:r.out
+
+inoremap {<CR> {<CR>}<ESC>O
+"nnoremap <CR> o<ESC>
+"nnoremap <Backspace> X
+
+nmap <F6> :Buffers<CR>
+nmap <F7> :ALEHover<CR>
+nmap <F8> :NERDTreeToggle<CR>
 nmap <F9> :call ToggleErrors()<CR>
+nmap <F12> :TagbarToggle<CR>
+
+
+"let g:ale_completion_enabled = 1
 
 " vim-plug
 call plug#begin('~/.vim/plugged')
-"Plug 'gmarik/Vundle.vim'
 Plug 'tomasr/molokai'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'scrooloose/nerdtree'
-Plug 'nathanaelkane/vim-indent-guides'
+Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
+"Plug 'nathanaelkane/vim-indent-guides'
 Plug 'vim-syntastic/syntastic'
 Plug 'chase/vim-ansible-yaml'
-Plug 'pangloss/vim-javascript'
-Plug 'mxw/vim-jsx'
 Plug 'sindresorhus/vim-xo'
 Plug 'nvie/vim-flake8'
 Plug 'octol/vim-cpp-enhanced-highlight'
@@ -84,29 +112,39 @@ Plug 'editorconfig/editorconfig-vim'
 Plug 'mattn/emmet-vim'
 Plug 'airblade/vim-gitgutter'
 Plug 'the-lambda-church/coquille'
-Plug 'ElmCast/elm-vim'
-Plug 'posva/vim-vue'
+Plug 'posva/vim-vue' 
 Plug 'vim-latex/vim-latex'
-Plug 'elixir-editors/vim-elixir'
+Plug 'elixir-editors/vim-elixir', { 'for': 'elixir' }
+Plug 'pangloss/vim-javascript'
+Plug 'leafgarland/typescript-vim'
+Plug 'MaxMEllon/vim-jsx-pretty'
+"Plug 'w0rp/ale'
+Plug '/usr/local/opt/fzf'
+Plug 'junegunn/fzf.vim'
+Plug 'spoqa/nirum.vim', { 'for': 'nirum' }
+Plug 'neovimhaskell/haskell-vim', { 'for': 'haskel' }
+Plug 'cespare/vim-toml'
+Plug 'tpope/vim-fugitive'
+Plug 'rust-lang/rust.vim', { 'for': 'rust' }
+Plug 'majutsushi/tagbar'
+"Plug 'Wraul/vim-easytags', { 'branch': 'fix-universal-detection' }
+Plug 'xolox/vim-misc'
+Plug 'Glench/Vim-Jinja2-Syntax'
+Plug 'Vimjas/vim-python-pep8-indent', { 'for': ['python', 'python3'] }
+"Plug 'python-mode/python-mode', { 'branch': 'develop' }
 "Plug 'Valloric/YouCompleteMe'
-"Plug 'let-def/vimbufsync'
-"Plug 'klen/python-mode'
-"Plug 'davidhalter/jedi-vim'
 call plug#end()
-filetype plugin indent on
 
 colorscheme molokai
 
 " Indent-Guides
-let g:indent_guides_auto_colors = 0
-let g:indent_guides_guide_size = 1
-let g:indent_guides_start_level = 2
-autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd ctermbg=244 guibg=red
-autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=240 guibg=red
-autocmd VimEnter,Colorscheme * :IndentGuidesEnable
+"let g:indent_guides_auto_colors = 0
+"let g:indent_guides_guide_size = 1
+"let g:indent_guides_start_level = 2
+"autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd ctermbg=244 guibg=red
+"autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=240 guibg=red
+"autocmd VimEnter,Colorscheme * :IndentGuidesEnable
 
-" 자동 주석 제거
-autocmd FileType * setlocal formatoptions-=ro
 
 " vim-airline
 set laststatus=2
@@ -114,16 +152,21 @@ set t_Co=256
 let g:airline_theme = 'badwolf'
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#syntastic#enabled = 1
+let g:airline#extensions#tabline#ignore_bufadd_pat = 'nerdtree|tagbar|!'
 
 let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#show_buffers = 1
-let g:airline#extensions#tabline#buffer_min_count = 2
+"let g:airline#extensions#tabline#show_buffers = 1
+"let g:airline#extensions#tabline#buffer_min_count = 2
 
 " Syntastic
+let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_enable_signs = 1
 let g:syntastic_cpp_check_header = 1
 let g:syntastic_check_on_wq = 1
+let g:syntastic_mode_map = {
+    \ "mode": "active",
+    \ "passive_filetypes": ["html"] }
 
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
@@ -135,18 +178,13 @@ highlight SyntasticErrorLine guibg=#2f0000
 let g:syntastic_c_compiler = 'gcc'
 
 let g:syntastic_cpp_compiler = 'g++'
-let g:syntastic_cpp_compiler_options = ' -std=c++11'
+let g:syntastic_cpp_compiler_options = ' -std=c++17'
 
 let g:loaded_syntastic_cpp11_gcc_checker = 1
 let g:syntastic_cpp11_compiler = executable('g++') ? 'g++' : 'clang++'
-let g:syntastic_cpp_include_dirs = [ '../external/glfw-3.0.3/include/GLFW/', 'external/glfw-3.0.3/include/GLFW/', 'external/glm-0.9.4.0/', '../external/glm-0.9.4.0/', 'external/glew-1.9.0/include/' , '../external/glew-1.9.0/include/' ]
 
 let g:syntastic_javascript_checkers = ['eslint', 'xo']
-"let g:syntastic_python_checkers = ['flake8']
-
-" syntastic for elm
-let g:elm_syntastic_show_warnings = 1
-let g:syntastic_elm_checkers = ['elm_make']
+let g:syntastic_python_checkers = ['flake8'] ", 'python3', 'python']
 
 " syntastic toggle errors
 function! ToggleErrors()
@@ -158,20 +196,38 @@ function! ToggleErrors()
     endif
 endfunction
 
-" Pathogen
-silent! execute pathogen#infect()
-
 " vim-flake8 option
 let g:flake8_max_line_length=120
 
 " vim-jsx
 let g:jsx_ext_required = 0
 
-" Coquille
-au FileType coq call coquille#FNMapping()
-"au FileType coq call coquille#CoqideMapping()
+" TeX key map
+"au FileType tex imap <leader>Align \begin{align*}<CR>\end{align*}<<-->><Esc>O
 
-" elm-vim & elm-format
-let g:elm_format_autosave = 0
+" typescript
+let g:typescript_compiler_binary = 'tsc'
+let g:typescript_compiler_options = ''
 
-au FileType tex imap <leader>Align \begin{align*}<CR>\end{align*}<<-->><Esc>O
+let g:fsharp_only_check_errors_on_write = 1
+
+" vim-gitgutter
+highlight GitGutterAdd    guifg=#009900 guibg=#232526 ctermfg=2 ctermbg=236
+highlight GitGutterChange guifg=#bbbb00 guibg=#232526 ctermfg=3 ctermbg=236
+highlight GitGutterDelete guifg=#ff2222 guibg=#232526 ctermfg=1 ctermbg=236
+
+" easytags
+let g:easytags_suppress_ctags_warning = 1
+let g:easytags_async = 1
+let g:easytags_dynamic_files = 1
+
+let g:vim_jsx_pretty_colorful_config = 1
+
+" auto-reload file when changed in background
+au FocusGained,BufEnter * :silent! !
+
+" FZF shortcut
+nnoremap <leader>f :Files<CR>
+nnoremap <leader>t :Tags<CR>
+nnoremap <leader>b :Buffers<CR>
+nnoremap <leader><TAB> :Windowss<CR>
