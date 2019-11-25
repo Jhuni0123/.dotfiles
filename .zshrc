@@ -1,42 +1,49 @@
-# zsh-completions
-fpath=(/usr/local/share/zsh-completions $fpath)
-
-# homebrew's completions
-if type brew &>/dev/null; then
-  FPATH=$(brew --prefix)/share/zsh/site-functions:$FPATH
-fi
-
-##oh-my-zsh##
-export ZSH=~/.oh-my-zsh
-source $ZSH/oh-my-zsh.sh
-
-#zplug#
-export ZPLUG_HOME=/usr/local/opt/zplug
-source $ZPLUG_HOME/init.zsh
-
-zplug "zsh-users/zsh-syntax-highlighting", defer:2
-zplug "simnalamburt/shellder", as:theme
-zplug "zsh-users/zsh-completions", depth:1
-zplug "simnalamburt/cgitc"
-zplug "lukechilds/zsh-nvm"
-
-if ! zplug check; then; zplug install; fi
-zplug load
-
-##alias##
+### Alias
 alias gitconfig="vim ~/.gitconfig"
 alias zshrc="vim ~/.zshrc"
 alias vimrc="vim ~/.vimrc"
 alias vi="vim"
+alias rm="rm -i"
 alias mv="mv -i"
 alias cp="cp -i"
 alias sudo="sudo -H"
 alias venv="echo \$VIRTUAL_ENV"
+alias ls="ls -G"
+alias l="ls -lah"
+alias ll="ls -lh"
+alias la="ls -lAh"
 
+export CLICOLOR=1
+export LSCOLORS=Gxfxcxdxbxegedabagacad
 export TERM=xterm-256color
 
-# node
+# locale to en_US
+export LC_ALL=en_US.UTF-8  
+export LANG=en_US.UTF-8
+
+### PATH config ###
 export PATH="/Users/jhuni/.local/bin:/Users/jhuni/Library/Python/2.7/bin:/usr/local/opt/node@8/bin:$PATH"
+export PATH="/usr/local/sbin:$PATH"
+export PATH="/usr/local/opt/grep/libexec/gnubin:$PATH"
+export PATH="/usr/local/lib/python2.7/site-packages/PySide:$PATH"
+export PATH="$HOME/.poetry/bin:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
+export PATH="$PYENV_ROOT/bin:$PATH"
+
+##oh-my-zsh##
+export ZSH=~/.oh-my-zsh
+source $ZSH/oh-my-zsh.sh
+#source ~/.oh-my-zsh/templates/zshrc.zsh-template
+
+### Zplugin ###
+source "$HOME/.zplugin/bin/zplugin.zsh"
+autoload -Uz _zplugin
+(( ${+_comps} )) && _comps[zplugin]=_zplugin
+
+zplugin light zsh-users/zsh-syntax-highlighting
+zplugin light zsh-users/zsh-completions
+zplugin light simnalamburt/shellder
+zplugin light simnalamburt/cgitc
 
 # opam coq
 export OPAMROOT=~/opam-coq.8.8.1
@@ -54,32 +61,34 @@ export CPPFLAGS="-I/usr/local/opt/openssl/include"
 
 # pyenv
 export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/bin:$PATH"
 if command -v pyenv 1>/dev/null 2>&1; then
   eval "$(pyenv init -)"
 fi
 
-# pipx binaries
-export PATH="$HOME/.local/bin:$PATH"
-
 # pyenv-virtualenv
 if which pyenv-virtualenv-init > /dev/null; then eval "$(pyenv virtualenv-init -)"; fi
 
-# virtualenvwrapper
-#export WORKON_HOME=$HOME/.venvs
-#source /usr/local/bin/virtualenvwrapper.sh
-
-# pyenv-virtualenvwrapper
-pyenv virtualenvwrapper_lazy
-
-# path
-export PATH="/usr/local/sbin:$PATH"
+# direnv
+eval "$(direnv hook zsh)"
+show_virtual_env() {
+  if [[ -n "$VIRTUAL_ENV" && -n "$DIRENV_DIR" ]]; then
+    echo "($(basename $VIRTUAL_ENV))"
+  fi
+}
+export PS1='$(show_virtual_env)'$PS1
 
 # ripgrep
 export RIPGREP_CONFIG_PATH="$HOME/.ripgreprc"
 
-# gnubin
-export PATH="/usr/local/opt/grep/libexec/gnubin:$PATH"
 
-# poetry
-export PATH="$HOME/.poetry/bin:$PATH"
+### Completions ###
+# homebrew's completions
+if type brew &>/dev/null; then
+  FPATH=$(brew --prefix)/share/zsh/site-functions:$FPATH
+fi
+
+# aws completions
+source "$HOME/.local/bin/aws_zsh_completer.sh"
+
+
+source "$HOME/.zshrc_private"
