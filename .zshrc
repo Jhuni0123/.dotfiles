@@ -54,30 +54,46 @@ fi
 if [ -f ~/.zinit/bin/zinit.zsh ]; then
     source ~/.zinit/bin/zinit.zsh
 
-    zinit ice depth=1; zinit light romkatv/powerlevel10k
+    zinit ice depth=1
+    zinit light romkatv/powerlevel10k
 
+    zinit ice wait
     zinit light pbzweihander/truck
+
+    zinit ice wait
     zinit light simnalamburt/cgitc
+
     #zinit ice wait
     #zinit light simnalamburt/zsh-expand-all
+
     zinit ice wait pick".kubectl_aliases"
     zinit light ahmetb/kubectl-aliases
 
+    zinit ice wait
     zinit light voronkovich/gitignore.plugin.zsh
+
     zinit ice wait src"z.sh"
     zinit light rupa/z
 
     zinit ice wait blockf atpull'zinit creinstall -q .'
     zinit light zsh-users/zsh-completions
+
     zinit ice wait atload'_zsh_autosuggest_start'
     zinit light zsh-users/zsh-autosuggestions
+
+    zinit ice wait
     zinit light zsh-users/zsh-history-substring-search
+
+    zinit ice wait
     zinit light zsh-users/zsh-syntax-highlighting
+
     zinit ice wait atload'direnv reload'
     zinit as"program" make'!' atclone'./direnv hook zsh > zhook.zsh' \
         atpull'%atclone' pick"direnv" src"zhook.zsh" for \
             direnv/direnv
+
     export NVM_LAZY_LOAD=true
+    zinit ice wait
     zinit light lukechilds/zsh-nvm # This load nvm on first use of node, npm, etc
 
     # completions
