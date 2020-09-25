@@ -57,69 +57,33 @@ if [ -f ~/.zinit/bin/zinit.zsh ]; then
     zinit ice depth=1
     zinit light romkatv/powerlevel10k
 
-    zinit ice wait
-    zinit light pbzweihander/truck
-
-    zinit ice wait
-    zinit light simnalamburt/cgitc
-
-    #zinit ice wait
-    #zinit light simnalamburt/zsh-expand-all
-
-    zinit ice wait pick".kubectl_aliases"
-    zinit light ahmetb/kubectl-aliases
-
-    zinit ice wait
-    zinit light voronkovich/gitignore.plugin.zsh
-
-    zinit ice wait src"z.sh"
-    zinit light rupa/z
-
-    zinit ice wait blockf atpull'zinit creinstall -q .'
-    zinit light zsh-users/zsh-completions
-
-    zinit ice wait atload'_zsh_autosuggest_start'
-    zinit light zsh-users/zsh-autosuggestions
-
-    zinit ice wait
-    zinit light zsh-users/zsh-history-substring-search
-
-    zinit ice wait
-    zinit light zsh-users/zsh-syntax-highlighting
-
-    zinit ice wait atload'direnv reload'
-    zinit as"program" make'!' atclone'./direnv hook zsh > zhook.zsh' \
-        atpull'%atclone' pick"direnv" src"zhook.zsh" for \
-            direnv/direnv
-
-    export NVM_LAZY_LOAD=true
-    zinit ice wait
-    zinit light lukechilds/zsh-nvm # This load nvm on first use of node, npm, etc
-
-    # completions
-    zinit ice wait as'completion' id-as'git-completion'
-    zinit snippet https://github.com/git/git/blob/master/contrib/completion/git-completion.zsh
-    zinit light-mode wait has"helm" for \
-        id-as"helm-completion" \
-        as"completion" \
-        atclone"helm completion zsh > _helm" \
-        atpull"%atclone" \
-        run-atpull \
-            zdharma/null
-    zinit light-mode wait has"kubectl" for \
-        id-as"kubectl-completion" \
-        as"completion" \
-        atclone"kubectl completion zsh > _kubectl" \
-        atpull"%atclone" \
-        run-atpull \
-            zdharma/null
-    zinit light-mode wait has"pipx" for \
-        id-as"pipx-completion" \
-        as"completion" \
-        atclone"cat <(echo '#compdef pipx') <(register-python-argcomplete pipx) > _pipx" \
-        atpull"%atclone" \
-        run-atpull \
-            zdharma/null
+    zinit wait lucid light-mode for \
+      atinit"zicompinit; zicdreplay" \
+        zdharma/fast-syntax-highlighting \
+      atload'_zsh_autosuggest_start' \
+        zsh-users/zsh-autosuggestions \
+        pbzweihander/truck \
+        simnalamburt/cgitc \
+      pick".kubectl_aliases" \
+        ahmetb/kubectl-aliases \
+        voronkovich/gitignore.plugin.zsh \
+      src"z.sh" \
+        rupa/z \
+      blockf atpull'zinit creinstall -q .' \
+        zsh-users/zsh-completions \
+        zsh-users/zsh-history-substring-search \
+      atinit"export NVM_LAZY_LOAD=true" \
+        lukechilds/zsh-nvm \
+      as"program" make'!' atclone'./direnv hook zsh > zhook.zsh' atpull'%atclone' pick"direnv" src"zhook.zsh" \
+        direnv/direnv \
+      has"helm" id-as"helm-completion" as"completion" atclone"helm completion zsh > _helm" atpull"%atclone" run-atpull \
+        zdharma/null \
+      has"kubectl" id-as"kubectl-completion" as"completion" atclone"kubectl completion zsh > _kubectl" atpull"%atclone" run-atpull \
+        zdharma/null \
+      has"pipx" id-as"pipx-completion" as"completion" atclone"cat <(echo '#compdef pipx') <(register-python-argcomplete pipx) > _pipx" atpull"%atclone" run-atpull \
+        zdharma/null \
+     as'completion' id-as'git-completion' \
+        https://github.com/git/git/blob/master/contrib/completion/git-completion.zsh
 fi
 
 #
@@ -164,11 +128,6 @@ export WORDCHARS=''
 zmodload -i zsh/complist
 
 #zstyle ':completion:*' matcher-list 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
-
-bindkey '^[[A' history-substring-search-up
-bindkey '^[[B' history-substring-search-down
-bindkey -M vicmd 'k' history-substring-search-up
-bindkey -M vicmd 'j' history-substring-search-down
 
 #
 # External programs
