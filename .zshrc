@@ -56,16 +56,13 @@ if [ -f ~/.zinit/bin/zinit.zsh ]; then
 
     zinit ice depth=1; zinit light romkatv/powerlevel10k
 
-    zinit ice wait
     zinit light pbzweihander/truck
-    zinit ice wait
     zinit light simnalamburt/cgitc
     #zinit ice wait
     #zinit light simnalamburt/zsh-expand-all
     zinit ice wait pick".kubectl_aliases"
     zinit light ahmetb/kubectl-aliases
 
-    zinit ice wait
     zinit light voronkovich/gitignore.plugin.zsh
     zinit ice wait src"z.sh"
     zinit light rupa/z
@@ -74,9 +71,7 @@ if [ -f ~/.zinit/bin/zinit.zsh ]; then
     zinit light zsh-users/zsh-completions
     zinit ice wait atload'_zsh_autosuggest_start'
     zinit light zsh-users/zsh-autosuggestions
-    zinit ice wait
     zinit light zsh-users/zsh-history-substring-search
-    zinit ice wait atinit'zpcompinit; zpcdreplay'
     zinit light zsh-users/zsh-syntax-highlighting
     zinit ice wait atload'direnv reload'
     zinit as"program" make'!' atclone'./direnv hook zsh > zhook.zsh' \
