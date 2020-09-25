@@ -1,6 +1,8 @@
-# This is Git's per-user configuration file.
 [user]
-# Please adapt and uncomment the following lines:
-	name = Jhuni0123
+    name = Jhuni0123
 [core]
     editor = vim
+[commit]
+    gpgsign = true
+[push]
+    default = current
