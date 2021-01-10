@@ -58,7 +58,6 @@ if [ -f ~/.zinit/bin/zinit.zsh ]; then
     zinit light romkatv/powerlevel10k
 
     zinit wait lucid light-mode for \
-      atinit"zicompinit; zicdreplay" \
         zdharma/fast-syntax-highlighting \
       atload'_zsh_autosuggest_start' \
         zsh-users/zsh-autosuggestions \
@@ -69,8 +68,6 @@ if [ -f ~/.zinit/bin/zinit.zsh ]; then
         voronkovich/gitignore.plugin.zsh \
       src"z.sh" \
         rupa/z \
-      blockf atpull'zinit creinstall -q .' \
-        zsh-users/zsh-completions \
         zsh-users/zsh-history-substring-search \
       atinit"export NVM_LAZY_LOAD=true" \
         lukechilds/zsh-nvm \
@@ -84,6 +81,8 @@ if [ -f ~/.zinit/bin/zinit.zsh ]; then
         zdharma/null \
      as'completion' id-as'git-completion' \
         https://github.com/git/git/blob/master/contrib/completion/git-completion.zsh
+    zinit  wait blockf atpull'zinit creinstall -q .' for \
+        zsh-users/zsh-completions
 fi
 
 #
