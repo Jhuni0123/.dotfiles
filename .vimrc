@@ -133,6 +133,7 @@ Plug 'Glench/Vim-Jinja2-Syntax'
 Plug 'Vimjas/vim-python-pep8-indent', { 'for': ['python', 'python3'] }
 "Plug 'python-mode/python-mode', { 'branch': 'develop' }
 "Plug 'Valloric/YouCompleteMe'
+Plug 'isobit/vim-caddyfile'
 call plug#end()
 
 colorscheme molokai
