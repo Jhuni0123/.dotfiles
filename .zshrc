@@ -181,6 +181,7 @@ tm() {
 if [ $commands[direnv] ]; then
     alias tmux='direnv exec / tmux'
     alias reload="direnv exec / $SHELL"
+    direnv reload 2>/dev/null || true
 fi
 
 
