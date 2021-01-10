@@ -11,7 +11,7 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/zdharma/zinit/master/doc/i
 ln -f .vimrc ~/.vimrc
 ln -f .zshrc ~/.zshrc
 ln -f .gitconfig ~/.gitconfig
-ln -s .zsh ~/.zsh
+ln -s $PWD/.zsh ~/.zsh
 
 vim +PlugInstall +qall
 
