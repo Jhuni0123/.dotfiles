@@ -21,80 +21,47 @@ set nocompatible
 set clipboard=unnamed
 set autoread
 set smartcase
-set tags=tags
+set tags=.tags
 set updatetime=100
+set mouse+=an
 
 syntax on
 filetype plugin indent on
 
-vnoremap <TAB>    >gv
-vnoremap <S-TAB>  <gv
-
+" Easy re-selection
+vnoremap <silent> <TAB>    >gv
+vnoremap <silent> <S-TAB>  <gv
 nnoremap gp `[v`]
 
+" Tab navigation
 nnoremap <TAB>    :tabn<CR>
 nnoremap <S-TAB>  :tabp<CR>
 nnoremap <esc>t   :tabnew<CR>
-nnoremap <esc>1   1gt
-nnoremap <esc>2   2gt
-nnoremap <esc>3   3gt
-nnoremap <esc>4   4gt
-nnoremap <esc>5   5gt
-nnoremap <esc>6   6gt
-nnoremap <esc>7   7gt
-nnoremap <esc>8   8gt
-nnoremap <esc>9   9gt
-
-"nnoremap <LeftMouse> <nop>
-set mouse+=an
 
 let mapleader=","
 
 nnoremap <leader>d "_d
 
+" Cursor movement
+nnoremap <C-a> ^
+nnoremap <C-e> $
+inoremap <C-a> <ESC>I
+inoremap <C-e> <ESC>A
+vnoremap <C-a> ^
+vnoremap <C-e> $
 
-" Easy single-file run
-command PS vsp %:r.in|w|sp %:r.out|w|vertical resize 30|normal <C-w>w<C-w>w
-command TEMP r ~/Documents/Codes/templates/template.%:e|normal ggddG
+" East split
+nnoremap <C-_> :split<CR>
+nnoremap <C-\> :vertical split<CR>
 
-command CRIO  wall|!gcc -Wall -lm %:r.c -o %:r && ./%:r < %:r.in > %:r.out
-command RIO  wall|!g++ -O2 -std=c++17 -Wall -lm %:r.cpp -o %:r && ./%:r < %:r.in > %:r.out
-command RI   wall|!g++ -O2 -std=c++17 -Wall -lm %:r.cpp -o %:r && ./%:r < %:r.in
-command R    wall|!g++ -O2 -std=c++17 -Wall -lm %:r.cpp -o %:r && ./%:r
-
-command RRIO wall|!rustc %:r.rs && ./%:r < %:r.in > %:r.out
-command RRI  wall|!rustc %:r.rs && ./%:r < %:r.in
-command RR   wall|!rustc %:r.rs && ./%:r
-
-command PRIO wall|!python %:r.py < %:r.in > %:r.out
-command PRIOE wall|!python %:r.py < %:r.in > %:r.out 2> %:r.err
-command PR wall|!python %:r.py
-command PI wall|!python -i %:r.py
-
-command P2RIO wall|!python2 %:r.py < %:r.in > %:r.out
-command P2R wall|!python2 %:r.py
-
-command MLR wall|!ocaml %:r.ml
-command MLRIO wall|!ocaml %:r.ml < %:r.in > %:r.out
-
-command HSRIO wall|!ghc %:r.hs -o %:r -lm && ./%:r < %:r.in > %:r.out
-
-command TSR wall|!tsc %:r.ts && node %:r.js
-
-command SCRIO wall|!scala %:r.scala < %:r.in > %:r.out
-
+" Auto parenthesis
 inoremap {<CR> {<CR>}<ESC>O
-"nnoremap <CR> o<ESC>
-"nnoremap <Backspace> X
+inoremap (<CR> (<CR>)<ESC>O
+inoremap [<CR> [<CR>]<ESC>O
 
-nmap <F6> :Buffers<CR>
-nmap <F7> :ALEHover<CR>
 nmap <F8> :NERDTreeToggle<CR>
 nmap <F9> :call ToggleErrors()<CR>
 nmap <F12> :TagbarToggle<CR>
-
-
-"let g:ale_completion_enabled = 1
 
 " vim-plug
 call plug#begin('~/.vim/plugged')
@@ -104,36 +71,37 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 "Plug 'nathanaelkane/vim-indent-guides'
 Plug 'vim-syntastic/syntastic'
-Plug 'chase/vim-ansible-yaml'
+Plug 'chase/vim-ansible-yaml', { 'for': 'yaml' }
 Plug 'sindresorhus/vim-xo'
-Plug 'nvie/vim-flake8'
-Plug 'octol/vim-cpp-enhanced-highlight'
+Plug 'octol/vim-cpp-enhanced-highlight', { 'for': 'cpp' }
 Plug 'editorconfig/editorconfig-vim'
 Plug 'mattn/emmet-vim'
 Plug 'airblade/vim-gitgutter'
-Plug 'the-lambda-church/coquille'
-Plug 'posva/vim-vue' 
-Plug 'vim-latex/vim-latex'
+Plug 'the-lambda-church/coquille', { 'for': 'coq' }
+Plug 'posva/vim-vue', { 'for': 'vue'}
+Plug 'vim-latex/vim-latex', { 'for': 'latex'}
 Plug 'elixir-editors/vim-elixir', { 'for': 'elixir' }
 Plug 'pangloss/vim-javascript'
-Plug 'leafgarland/typescript-vim'
-Plug 'MaxMEllon/vim-jsx-pretty'
-"Plug 'w0rp/ale'
-Plug '/usr/local/opt/fzf'
+Plug 'leafgarland/typescript-vim', { 'for': 'typescript' }
+Plug 'peitalin/vim-jsx-typescript'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'spoqa/nirum.vim', { 'for': 'nirum' }
-Plug 'neovimhaskell/haskell-vim', { 'for': 'haskel' }
-Plug 'cespare/vim-toml'
+Plug 'neovimhaskell/haskell-vim', { 'for': 'haskell' }
+Plug 'cespare/vim-toml', { 'for': 'toml' }
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-eunuch'
 Plug 'rust-lang/rust.vim', { 'for': 'rust' }
 Plug 'majutsushi/tagbar'
-"Plug 'Wraul/vim-easytags', { 'branch': 'fix-universal-detection' }
 Plug 'xolox/vim-misc'
 Plug 'Glench/Vim-Jinja2-Syntax'
 Plug 'Vimjas/vim-python-pep8-indent', { 'for': ['python', 'python3'] }
-"Plug 'python-mode/python-mode', { 'branch': 'develop' }
-"Plug 'Valloric/YouCompleteMe'
+Plug 'nvie/vim-flake8', { 'for': ['python', 'python3'] }
 Plug 'isobit/vim-caddyfile'
+Plug 'hashivim/vim-terraform', { 'for': 'terraform' }
+Plug 'prabirshrestha/async.vim'
+Plug 'liuchengxu/vista.vim'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 call plug#end()
 
 colorscheme molokai
@@ -227,8 +195,99 @@ let g:vim_jsx_pretty_colorful_config = 1
 " auto-reload file when changed in background
 au FocusGained,BufEnter * :silent! !
 
-" FZF shortcut
+" Turn off line number in terminal
+if has('nvim')
+    autocmd TermOpen * setlocal nonu
+else
+    autocmd TerminalOpen * setlocal nonu
+endif
+
+" FZF shortcuts
 nnoremap <leader>f :Files<CR>
 nnoremap <leader>t :Tags<CR>
 nnoremap <leader>b :Buffers<CR>
-nnoremap <leader><TAB> :Windowss<CR>
+nnoremap <leader>c :Commands<CR>
+nnoremap <leader>m :Maps<CR>
+nnoremap <leader><TAB> :Windows<CR>
+
+let g:fzf_layout = {'down': '~40%'}
+
+" terraform
+let g:terraform_fmt_on_save=1
+
+" Easy single-file run
+command PS vsp %:r.in|w|sp %:r.out|w|vertical resize 30|normal <C-w>w<C-w>w
+command TEMP r ~/Documents/Codes/templates/template.%:e|normal ggddG
+
+command CRIO  wall|!gcc -Wall -lm %:r.c -o %:r && ./%:r < %:r.in > %:r.out
+command RIO  wall|!g++ -O2 -std=c++2a -Wall -lm %:r.cpp -o %:r && ./%:r < %:r.in > %:r.out
+command RI   wall|!g++ -O2 -std=c++2a -Wall -lm %:r.cpp -o %:r && ./%:r < %:r.in
+command R    wall|!g++ -O2 -std=c++2a -Wall -lm %:r.cpp -o %:r && ./%:r
+
+command RRIO wall|!rustc %:r.rs && ./%:r < %:r.in > %:r.out
+command RRI  wall|!rustc %:r.rs && ./%:r < %:r.in
+command RR   wall|!rustc %:r.rs && ./%:r
+
+command PRIO wall|!python3 %:r.py < %:r.in > %:r.out
+command PRIOE wall|!python3 %:r.py < %:r.in > %:r.out 2> %:r.err
+command PR wall|!python3 %:r.py
+command PI wall|!python3 -i %:r.py
+
+command P2RIO wall|!python2 %:r.py < %:r.in > %:r.out
+command P2R wall|!python2 %:r.py
+
+command MLR wall|!ocaml %:r.ml
+command MLRIO wall|!ocaml %:r.ml < %:r.in > %:r.out
+
+command HSRIO wall|!ghc %:r.hs -o %:r -lm && ./%:r < %:r.in > %:r.out
+
+command TSR wall|!tsc %:r.ts && node %:r.js
+
+command SCRIO wall|!scala %:r.scala < %:r.in > %:r.out
+
+
+" Coc
+let g:coc_node_path = '/usr/local/bin/node'
+nmap <silent> [g <Plug>(coc-diagnostic-prev)
+nmap <silent> ]g <Plug>(coc-diagnostic-next)
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gc <Plug>(coc-declaration)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+nmap <leader>rn <Plug>(coc-rename)
+" Use K to show documentation in preview window.
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  elseif (coc#rpc#ready())
+    call CocActionAsync('doHover')
+  else
+    execute '!' . &keywordprg . " " . expand('<cword>')
+  endif
+endfunction
+
+" Highlight the symbol and its references when holding the cursor.
+autocmd CursorHold * silent call CocActionAsync('highlight')
+
+" Mappings for CoCList
+" Show all diagnostics.
+nnoremap <silent><nowait> <space>a  :<C-u>CocList diagnostics<cr>
+" Manage extensions.
+nnoremap <silent><nowait> <space>e  :<C-u>CocList extensions<cr>
+" Show commands.
+nnoremap <silent><nowait> <space>c  :<C-u>CocList commands<cr>
+" Find symbol of current document.
+nnoremap <silent><nowait> <space>o  :<C-u>CocList outline<cr>
+" Search workspace symbols.
+nnoremap <silent><nowait> <space>s  :<C-u>CocList -I symbols<cr>
+" Do default action for next item.
+nnoremap <silent><nowait> <space>j  :<C-u>CocNext<CR>
+" Do default action for previous item.
+nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
+" Resume latest coc list.
+nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
+
+autocmd FileType python call coc#config('python', {'pythonPath': system('pyenv which python | tr -d \\n')})
