@@ -212,6 +212,10 @@ nnoremap <leader><TAB> :Windows<CR>
 
 let g:fzf_layout = {'down': '~40%'}
 
+" yaml indent
+au! BufNewFile,BufReadPost *.{yaml,yml} set filetype=yaml
+autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
+
 " terraform
 let g:terraform_fmt_on_save=1
 
