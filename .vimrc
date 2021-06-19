@@ -214,6 +214,16 @@ command SCRIO wall|!scala %:r.scala < %:r.in > %:r.out
 
 
 " Coc
+let g:coc_global_extensions = [
+    \ 'coc-json',
+    \ 'coc-tsserver',
+    \ 'coc-sh',
+    \ 'coc-css',
+    \ 'coc-html',
+    \ 'coc-pyright',
+    \ 'coc-rust-analyzer',
+    \ 'coc-clangd',
+    \ ]
 let g:coc_node_path = '/usr/local/bin/node'
 nmap <silent> [g <Plug>(coc-diagnostic-prev)
 nmap <silent> ]g <Plug>(coc-diagnostic-next)
