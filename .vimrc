@@ -70,7 +70,6 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 "Plug 'nathanaelkane/vim-indent-guides'
-Plug 'vim-syntastic/syntastic'
 Plug 'chase/vim-ansible-yaml', { 'for': 'yaml' }
 Plug 'sindresorhus/vim-xo'
 Plug 'octol/vim-cpp-enhanced-highlight', { 'for': 'cpp' }
@@ -120,50 +119,14 @@ set laststatus=2
 set t_Co=256
 let g:airline_theme = 'badwolf'
 let g:airline_powerline_fonts = 1
-let g:airline#extensions#syntastic#enabled = 1
 let g:airline#extensions#tabline#ignore_bufadd_pat = 'nerdtree|tagbar|!'
 
 let g:airline#extensions#tabline#enabled = 1
 "let g:airline#extensions#tabline#show_buffers = 1
 "let g:airline#extensions#tabline#buffer_min_count = 2
 
-" Syntastic
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_enable_signs = 1
-let g:syntastic_cpp_check_header = 1
-let g:syntastic_check_on_wq = 1
-let g:syntastic_mode_map = {
-    \ "mode": "active",
-    \ "passive_filetypes": ["html"] }
-
 set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
-
-highlight SyntasticErrorSign guifg=white guibg=red
-highlight SyntasticErrorLine guibg=#2f0000
-
-let g:syntastic_c_compiler = 'gcc'
-
-let g:syntastic_cpp_compiler = 'g++'
-let g:syntastic_cpp_compiler_options = ' -std=c++17'
-
-let g:loaded_syntastic_cpp11_gcc_checker = 1
-let g:syntastic_cpp11_compiler = executable('g++') ? 'g++' : 'clang++'
-
-let g:syntastic_javascript_checkers = ['eslint', 'xo']
-let g:syntastic_python_checkers = ['flake8'] ", 'python3', 'python']
-
-" syntastic toggle errors
-function! ToggleErrors()
-    let old_last_winnr = winnr('$')
-    lclose
-    if old_last_winnr == winnr('$')
-        " Nothing was closed, open syntastic error location panel
-        Errors
-    endif
-endfunction
 
 " vim-flake8 option
 let g:flake8_max_line_length=120
