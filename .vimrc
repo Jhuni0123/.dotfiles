@@ -266,3 +266,9 @@ nnoremap <silent><nowait> <space>j  :<C-u>CocNext<CR>
 nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list.
 nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
+
+" Fix mouse protocol in large terminal
+" https://iterm2.com/faq.html
+if has('mouse_sgr')
+    set ttymouse=sgr
+endif
