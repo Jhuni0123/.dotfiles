@@ -1,8 +1,5 @@
 #!/bin/bash
 
-# install zinit
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/zdharma/zinit/master/doc/install.sh)"
-
 git config --global include.path "${PWD}/gitconfig_global"
 
 echo "export DOTFILES_HOME=${PWD}

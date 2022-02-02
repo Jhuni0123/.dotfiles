@@ -51,14 +51,25 @@ fi
 #
 # zinit
 #
-if [ -f ~/.zinit/bin/zinit.zsh ]; then
-    source ~/.zinit/bin/zinit.zsh
+ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
+if [ ! -f ${ZINIT_HOME}/zinit.zsh ]; then
+    print -P "%F{33} %F{220}Installing %F{33}ZDHARMA-CONTINUUM%F{220} Initiative Plugin Manager (%F{33}zdharma-continuum/zinit%F{220})…%f"
+    mkdir -p "$(dirname $ZINIT_HOME)"
+    git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME" && \
+        print -P "%F{33} %F{34}Installation successful.%f%b" || \
+        print -P "%F{160} The clone has failed.%f%b"
+fi
+
+if [ -f ${ZINIT_HOME}/zinit.zsh ]; then
+    source ${ZINIT_HOME}/zinit.zsh
+    autoload -Uz _zinit
+    (( ${+_comps} )) && _comps[zinit]=_zinit
 
     zinit ice depth=1
     zinit light romkatv/powerlevel10k
 
     zinit wait lucid light-mode for \
-        zdharma/fast-syntax-highlighting \
+        zdharma-continuum/fast-syntax-highlighting \
       atload'_zsh_autosuggest_start' \
         zsh-users/zsh-autosuggestions \
         pbzweihander/truck \
@@ -74,11 +85,11 @@ if [ -f ~/.zinit/bin/zinit.zsh ]; then
       as"program" make'!' atclone'./direnv hook zsh > zhook.zsh' atpull'%atclone' pick"direnv" src"zhook.zsh" \
         direnv/direnv \
       has"helm" id-as"helm-completion" as"completion" atclone"helm completion zsh > _helm" atpull"%atclone" run-atpull \
-        zdharma/null \
+        zdharma-continuum/null \
       has"kubectl" id-as"kubectl-completion" as"completion" atclone"kubectl completion zsh > _kubectl" atpull"%atclone" run-atpull \
-        zdharma/null \
+        zdharma-continuum/null \
       has"pipx" id-as"pipx-completion" as"completion" atclone"cat <(echo '#compdef pipx') <(register-python-argcomplete pipx) > _pipx" atpull"%atclone" run-atpull \
-        zdharma/null \
+        zdharma-continuum/null \
      as'completion' id-as'git-completion' \
         https://github.com/git/git/blob/master/contrib/completion/git-completion.zsh
     zinit  wait blockf atpull'zinit creinstall -q .' for \
