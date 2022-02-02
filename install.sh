@@ -3,14 +3,13 @@
 # install zinit
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/zdharma/zinit/master/doc/install.sh)"
 
-# link force dotfiles
-ln -f .gitconfig ~/.gitconfig
+git config --global include.path "${PWD}/gitconfig_global"
 
-echo "export DOTFILES_HOME=$(pwd)
-source $(pwd)/zshrc/basic.zsh
+echo "export DOTFILES_HOME=${PWD}
+source ${PWD}/zshrc/basic.zsh
 " > ~/.zshrc
 
-echo "source $(pwd)/vimrc/basic.vim" > ~/.vimrc
+echo "source ${PWD}/vimrc/basic.vim" > ~/.vimrc
 vim +PlugInstall +qall
 
 # sudo chsh -s $(which zsh)
