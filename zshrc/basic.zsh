@@ -184,8 +184,6 @@ if [ $commands[direnv] ]; then
     direnv reload 2>/dev/null || true
 fi
 
-
-# Additional settings
-for file in ~/.zsh/**/*.zsh; do
-    source $file
-done
+source ${DOTFILES_HOME}/zshrc/aliases.zsh
+source ${DOTFILES_HOME}/zshrc/aws_profile.zsh
+source ${DOTFILES_HOME}/zshrc/p10k.zsh

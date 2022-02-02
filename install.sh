@@ -8,9 +8,11 @@ curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/zdharma/zinit/master/doc/install.sh)"
 
 # link force dotfiles
-ln -f .zshrc ~/.zshrc
 ln -f .gitconfig ~/.gitconfig
-ln -s $PWD/.zsh ~/.zsh
+
+echo "export DOTFILES_HOME=$(pwd)
+source $(pwd)/zshrc/basic.zsh
+" > ~/.zshrc
 
 echo "source $(pwd)/vimrc/basic.vim" > ~/.vimrc
 vim +PlugInstall +qall
