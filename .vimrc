@@ -1,4 +1,6 @@
 set t_Co=256
+set t_AB=[48;5;%dm
+set t_AF=[38;5;%dm
 set number
 set autoindent
 set cindent
@@ -50,6 +52,12 @@ inoremap <C-e> <ESC>A
 vnoremap <C-a> ^
 vnoremap <C-e> $
 
+" Move cursor between pane
+nnoremap <S-Down> <C-W><C-J>
+nnoremap <S-Up> <C-W><C-K>
+nnoremap <S-Right> <C-W><C-L>
+nnoremap <S-Left> <C-W><C-H>
+
 " East split
 nnoremap <C-_> :split<CR>
 nnoremap <C-\> :vertical split<CR>
@@ -81,7 +89,7 @@ Plug 'posva/vim-vue', { 'for': 'vue'}
 Plug 'vim-latex/vim-latex', { 'for': 'latex'}
 Plug 'elixir-editors/vim-elixir', { 'for': 'elixir' }
 Plug 'pangloss/vim-javascript'
-Plug 'leafgarland/typescript-vim', { 'for': 'typescript' }
+Plug 'leafgarland/typescript-vim'
 Plug 'peitalin/vim-jsx-typescript'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
@@ -101,8 +109,11 @@ Plug 'hashivim/vim-terraform', { 'for': 'terraform' }
 Plug 'prabirshrestha/async.vim'
 Plug 'liuchengxu/vista.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'udalov/kotlin-vim'
+Plug 'styled-components/vim-styled-components'
 call plug#end()
 
+let g:rehash256 = 1
 colorscheme molokai
 
 " Indent-Guides
@@ -116,7 +127,6 @@ colorscheme molokai
 
 " vim-airline
 set laststatus=2
-set t_Co=256
 let g:airline_theme = 'badwolf'
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#ignore_bufadd_pat = 'nerdtree|tagbar|!'
@@ -248,6 +258,13 @@ endfunction
 
 " Highlight the symbol and its references when holding the cursor.
 autocmd CursorHold * silent call CocActionAsync('highlight')
+
+
+hi def link tsxCloseTag Identifier
+hi tsxTagName ctermfg=197
+hi tsxCloseTagName ctermfg=197
+hi tsxComponentName ctermfg=197
+hi tsxCloseComponentName ctermfg=197
 
 " Mappings for CoCList
 " Show all diagnostics.
