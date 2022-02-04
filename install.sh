@@ -24,3 +24,7 @@ echo "source ${PWD}/vimrc/basic.vim" >> ~/.vimrc
 # tmux
 echo "Connect tmux config..."
 echo "source-file ${PWD}/tmux.conf" >> ~/.tmux.conf
+
+# direnv
+echo "Connect direnv config..."
+echo "source ${PWD}/direnvrc" >> ~/.direnvrc
