@@ -82,7 +82,7 @@ if [ -f ${ZINIT_HOME}/zinit.zsh ]; then
         zsh-users/zsh-history-substring-search \
       atinit"export NVM_LAZY_LOAD=true" \
         lukechilds/zsh-nvm \
-      as"program" make'!' atclone'./direnv hook zsh > zhook.zsh' atpull'%atclone' pick"direnv" src"zhook.zsh" \
+      from"gh-r" as"program" mv"direnv* -> direnv" atclone'./direnv hook zsh > zhook.zsh' atpull'%atclone' pick"direnv" src="zhook.zsh" \
         direnv/direnv \
       has"helm" id-as"helm-completion" as"completion" atclone"helm completion zsh > _helm" atpull"%atclone" run-atpull \
         zdharma-continuum/null \
