@@ -232,6 +232,7 @@ command SCRIO wall|!scala %:r.scala < %:r.in > %:r.out
 
 
 " Coc
+let g:coc_node_path = $COC_NODE_PATH
 let g:coc_global_extensions = [
     \ 'coc-json',
     \ 'coc-tsserver',
