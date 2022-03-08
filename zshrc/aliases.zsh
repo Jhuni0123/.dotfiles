@@ -1,6 +1,4 @@
-alias gitconfig="vim ~/.gitconfig"
-alias zshrc="vim ~/.zshrc"
-alias vimrc="vim ~/.vimrc"
+alias dotfiles="vim ~/.dotfiles"
 alias vi="vim"
 alias mv="mv -i"
 alias cp="cp -i"
