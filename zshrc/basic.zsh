@@ -195,6 +195,10 @@ if [ $commands[direnv] ]; then
     direnv reload 2>/dev/null || true
 fi
 
+if [[ `uname` == "Darwin" ]]; then
+    OS="macos"
+fi
+
 source ${DOTFILES_HOME}/zshrc/aliases.zsh
 source ${DOTFILES_HOME}/zshrc/aws_profile.zsh
 source ${DOTFILES_HOME}/zshrc/p10k.zsh
