@@ -68,8 +68,7 @@ inoremap (<CR> (<CR>)<ESC>O
 inoremap [<CR> [<CR>]<ESC>O
 
 nmap <F8> :NERDTreeToggle<CR>
-nmap <F9> :call ToggleErrors()<CR>
-nmap <F12> :TagbarToggle<CR>
+nmap <F9> :Vista!!<CR>
 
 " vim-plug
 " automatic installation
@@ -107,7 +106,6 @@ Plug 'cespare/vim-toml', { 'for': 'toml' }
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-eunuch'
 Plug 'rust-lang/rust.vim', { 'for': 'rust' }
-Plug 'majutsushi/tagbar'
 Plug 'xolox/vim-misc'
 Plug 'Glench/Vim-Jinja2-Syntax'
 Plug 'Vimjas/vim-python-pep8-indent', { 'for': ['python', 'python3'] }
@@ -132,6 +130,7 @@ colorscheme molokai
 "autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=240 guibg=red
 "autocmd VimEnter,Colorscheme * :IndentGuidesEnable
 
+let g:vista_default_executive = 'coc'
 
 " vim-airline
 set laststatus=2
