@@ -38,7 +38,7 @@ if [ -d ~/.yarn/bin ]; then
     export PATH="$HOME/.yarn/bin:$PATH"
 fi
 
-if [ $commands[ruby] -a $commands[gem] ]; then
+if [[ $commands[ruby] && $commands[gem] ]]; then
     export PATH="$(ruby -r rubygems -e 'puts Gem.user_dir')/bin:$PATH"
 fi
 
