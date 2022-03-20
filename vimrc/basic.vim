@@ -20,12 +20,24 @@ set background=dark
 set backspace=2
 set nocompatible
 "set cino=g0j1J1
-set clipboard=unnamed
 set autoread
 set smartcase
 set tags=.tags
 set updatetime=100
 set mouse+=an
+
+" Clipboard
+set clipboard=unnamed
+if has('unix') && exists('$WSLENV')
+    set clipboard+=unnamedplus
+    let s:clip = 'clip.exe'
+    if executable(s:clip)
+        augroup WSLYank
+            autocmd!
+            autocmd TextYankPost * if v:event.operator ==# 'y' | call system(s:clip, @0) | endif
+        augroup END
+    endif
+endif
 
 syntax on
 filetype plugin indent on
