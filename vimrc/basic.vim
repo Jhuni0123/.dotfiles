@@ -92,8 +92,9 @@ Plug 'editorconfig/editorconfig-vim'
 Plug 'mattn/emmet-vim'
 Plug 'airblade/vim-gitgutter'
 Plug 'the-lambda-church/coquille', { 'for': 'coq' }
-Plug 'posva/vim-vue', { 'for': 'vue'}
-Plug 'vim-latex/vim-latex', { 'for': 'latex'}
+Plug 'posva/vim-vue', { 'for': 'vue' }
+Plug 'vim-latex/vim-latex', { 'for': 'latex' }
+Plug 'lervag/vimtex'
 Plug 'elixir-editors/vim-elixir', { 'for': 'elixir' }
 Plug 'pangloss/vim-javascript'
 Plug 'leafgarland/typescript-vim'
