@@ -130,6 +130,7 @@ Plug 'liuchengxu/vista.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'udalov/kotlin-vim'
 Plug 'styled-components/vim-styled-components'
+Plug 'rhysd/vim-llvm'
 call plug#end()
 
 let g:rehash256 = 1
