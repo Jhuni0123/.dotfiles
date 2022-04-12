@@ -314,3 +314,5 @@ nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
 if has('mouse_sgr')
     set ttymouse=sgr
 endif
+
+tnoremap <expr> <Esc> (&filetype == "fzf") ? "<Esc>" : "<c-\><c-n>"
