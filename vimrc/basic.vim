@@ -26,6 +26,9 @@ set tags=.tags
 set updatetime=100
 set mouse+=an
 
+set ttimeout
+set ttimeoutlen=100
+
 " Clipboard
 set clipboard=unnamed
 if has('unix') && exists('$WSLENV')
