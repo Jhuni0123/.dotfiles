@@ -24,6 +24,7 @@ echo "source ${PWD}/vimrc/basic.vim" >> ~/.vimrc
 # tmux
 echo "Connect tmux config..."
 echo "source-file ${PWD}/tmux.conf" >> ~/.tmux.conf
+echo "  Press '<C-b> I' to install plugins."
 
 # direnv
 echo "Connect direnv config..."
