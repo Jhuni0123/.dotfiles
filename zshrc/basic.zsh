@@ -68,30 +68,31 @@ if [ -f ${ZINIT_HOME}/zinit.zsh ]; then
     zinit ice depth=1
     zinit light romkatv/powerlevel10k
 
-    zinit wait lucid light-mode for \
-        zdharma-continuum/fast-syntax-highlighting \
-      atload'_zsh_autosuggest_start' \
-        zsh-users/zsh-autosuggestions \
-        pbzweihander/truck \
-        simnalamburt/cgitc \
-      pick".kubectl_aliases" \
-        ahmetb/kubectl-aliases \
-        voronkovich/gitignore.plugin.zsh \
-      src"z.sh" \
-        rupa/z \
-        zsh-users/zsh-history-substring-search \
-      atinit"export NVM_LAZY_LOAD=true" \
-        lukechilds/zsh-nvm \
-      from"gh-r" as"program" mv"direnv* -> direnv" atclone'./direnv hook zsh > zhook.zsh' atpull'%atclone' pick"direnv" src="zhook.zsh" \
-        direnv/direnv \
-      has"helm" id-as"helm-completion" as"completion" atclone"helm completion zsh > _helm" pick"_helm" atpull"%atclone" run-atpull \
-        zdharma-continuum/null \
-      has"kubectl" id-as"kubectl-completion" as"completion" atclone"kubectl completion zsh > _kubectl" atpull"%atclone" run-atpull \
-        zdharma-continuum/null \
-      has"pipx" id-as"pipx-completion" as"completion" atclone"cat <(echo '#compdef pipx') <(register-python-argcomplete pipx) > _pipx" pick"_pipx" atpull"%atclone" run-atpull \
-        zdharma-continuum/null \
-      as'completion' id-as'git-completion' \
-        https://github.com/git/git/blob/master/contrib/completion/git-completion.zsh
+    zinit wait lucid for \
+            zdharma-continuum/fast-syntax-highlighting \
+        atload'_zsh_autosuggest_start' \
+            zsh-users/zsh-autosuggestions \
+            pbzweihander/truck \
+            simnalamburt/cgitc \
+        pick".kubectl_aliases" \
+            ahmetb/kubectl-aliases \
+            voronkovich/gitignore.plugin.zsh \
+        src"z.sh" \
+            rupa/z \
+            zsh-users/zsh-history-substring-search \
+        atinit"export NVM_LAZY_LOAD=true" \
+            lukechilds/zsh-nvm \
+        from"gh-r" as"program" mv"direnv* -> direnv" atclone'./direnv hook zsh > zhook.zsh' atpull'%atclone' pick"direnv" src="zhook.zsh" \
+            direnv/direnv
+    zinit wait lucid as"completion" for \
+        has"helm" id-as"helm-completion" atclone"helm completion zsh > _helm" pick"_helm" atpull"%atclone" run-atpull \
+            zdharma-continuum/null \
+        has"kubectl" id-as"kubectl-completion" atclone"kubectl completion zsh > _kubectl" atpull"%atclone" run-atpull \
+            zdharma-continuum/null \
+        has"pipx" id-as"pipx-completion" atclone"cat <(echo '#compdef pipx') <(register-python-argcomplete pipx) > _pipx" pick"_pipx" atpull"%atclone" run-atpull \
+            zdharma-continuum/null \
+        id-as'git-completion' \
+            https://github.com/git/git/blob/master/contrib/completion/git-completion.zsh
     zinit wait lucid blockf atpull'zinit creinstall -q .' for \
         zsh-users/zsh-completions
 fi
