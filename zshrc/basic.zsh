@@ -84,15 +84,15 @@ if [ -f ${ZINIT_HOME}/zinit.zsh ]; then
         lukechilds/zsh-nvm \
       from"gh-r" as"program" mv"direnv* -> direnv" atclone'./direnv hook zsh > zhook.zsh' atpull'%atclone' pick"direnv" src="zhook.zsh" \
         direnv/direnv \
-      has"helm" id-as"helm-completion" as"completion" atclone"helm completion zsh > _helm" atpull"%atclone" run-atpull \
+      has"helm" id-as"helm-completion" as"completion" atclone"helm completion zsh > _helm" pick"_helm" atpull"%atclone" run-atpull \
         zdharma-continuum/null \
       has"kubectl" id-as"kubectl-completion" as"completion" atclone"kubectl completion zsh > _kubectl" atpull"%atclone" run-atpull \
         zdharma-continuum/null \
-      has"pipx" id-as"pipx-completion" as"completion" atclone"cat <(echo '#compdef pipx') <(register-python-argcomplete pipx) > _pipx" atpull"%atclone" run-atpull \
+      has"pipx" id-as"pipx-completion" as"completion" atclone"cat <(echo '#compdef pipx') <(register-python-argcomplete pipx) > _pipx" pick"_pipx" atpull"%atclone" run-atpull \
         zdharma-continuum/null \
-     as'completion' id-as'git-completion' \
+      as'completion' id-as'git-completion' \
         https://github.com/git/git/blob/master/contrib/completion/git-completion.zsh
-    zinit  wait blockf atpull'zinit creinstall -q .' for \
+    zinit wait lucid blockf atpull'zinit creinstall -q .' for \
         zsh-users/zsh-completions
 fi
 
@@ -168,7 +168,7 @@ autoload -Uz compinit && compinit
 autoload -U +X bashcompinit && bashcompinit
 
 if [ $commands[terraform] ]; then
-    complete -o nospace -C /usr/local/bin/terraform terraform
+    complete -o nospace -C $(which terraform) terraform
 fi
 
 if [ $commands[aws] ]; then
