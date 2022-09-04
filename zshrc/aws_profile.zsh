@@ -4,6 +4,10 @@ function _awsListAll() {
         credentialFileLocation=~/.aws/credentials
     fi
 
+    if [ ! -f $credentialFileLocation ]; then
+        return
+    fi
+
     while read line; do
         if [[ $line == "["* ]]; then echo $line | sed -e 's/[][\]//g' ; fi;
     done < $credentialFileLocation;
