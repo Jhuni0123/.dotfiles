@@ -22,9 +22,9 @@ set nocompatible
 "set cino=g0j1J1
 set autoread
 set smartcase
-set tags=.tags
 set updatetime=100
 set mouse+=an
+set fileencodings=utf-8,default
 
 set ttimeout
 set ttimeoutlen=100
@@ -45,6 +45,11 @@ endif
 syntax on
 filetype plugin indent on
 
+" +-------------+
+" | Key mapping |
+" +-------------+
+let mapleader=","
+
 " Easy re-selection
 vnoremap <silent> <TAB>    >gv
 vnoremap <silent> <S-TAB>  <gv
@@ -55,8 +60,7 @@ nnoremap <TAB>    :tabn<CR>
 nnoremap <S-TAB>  :tabp<CR>
 nnoremap <esc>t   :tabnew<CR>
 
-let mapleader=","
-
+" Delete without saving in register
 nnoremap <leader>d "_d
 
 " Cursor movement
@@ -85,6 +89,10 @@ inoremap [<CR> [<CR>]<ESC>O
 nmap <F8> :NERDTreeToggle<CR>
 nmap <F9> :Vista!!<CR>
 
+" +---------+
+" | Plugins |
+" +---------+
+
 " vim-plug
 " automatic installation
 " https://github.com/junegunn/vim-plug/wiki/tips#automatic-installation
@@ -95,45 +103,77 @@ if empty(glob(data_dir . '/autoload/plug.vim'))
 endif
 
 call plug#begin('~/.vim/plugged')
+" Colorscheme
 Plug 'tomasr/molokai'
+
+" Status line
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+
+" File explorer
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
-"Plug 'nathanaelkane/vim-indent-guides'
-Plug 'chase/vim-ansible-yaml', { 'for': 'yaml' }
-Plug 'sindresorhus/vim-xo'
-Plug 'octol/vim-cpp-enhanced-highlight', { 'for': 'cpp' }
-Plug 'editorconfig/editorconfig-vim'
-Plug 'mattn/emmet-vim'
+
+" Git
 Plug 'airblade/vim-gitgutter'
-Plug 'the-lambda-church/coquille', { 'for': 'coq' }
-Plug 'posva/vim-vue', { 'for': 'vue' }
+Plug 'tpope/vim-fugitive'
+
+" Key mappings
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-unimpaired'
+Plug 'tpope/vim-commentary'
+
+" Editorconfig
+Plug 'editorconfig/editorconfig-vim'
+
+" Shell command
+Plug 'tpope/vim-eunuch'
+
+" FZF - fuzzy finder
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+
+" Web dev snipet
+Plug 'mattn/emmet-vim'
+Plug 'xolox/vim-misc'
+Plug 'prabirshrestha/async.vim'
+
+" LSP
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
+" Tag/Symbol viewer
+Plug 'liuchengxu/vista.vim'
+
+" Latex
 Plug 'vim-latex/vim-latex', { 'for': 'latex' }
 Plug 'lervag/vimtex'
-Plug 'elixir-editors/vim-elixir', { 'for': 'elixir' }
+
+" JS/TS
 Plug 'pangloss/vim-javascript'
 Plug 'leafgarland/typescript-vim'
 Plug 'peitalin/vim-jsx-typescript'
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
-Plug 'spoqa/nirum.vim', { 'for': 'nirum' }
-Plug 'neovimhaskell/haskell-vim', { 'for': 'haskell' }
-Plug 'cespare/vim-toml', { 'for': 'toml' }
-Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-eunuch'
-Plug 'rust-lang/rust.vim', { 'for': 'rust' }
-Plug 'xolox/vim-misc'
+
+" Python
 Plug 'Glench/Vim-Jinja2-Syntax'
 Plug 'Vimjas/vim-python-pep8-indent', { 'for': ['python', 'python3'] }
 Plug 'nvie/vim-flake8', { 'for': ['python', 'python3'] }
+
+" Language & Syntax
+Plug 'rescript-lang/vim-rescript'
+Plug 'elixir-editors/vim-elixir', { 'for': 'elixir' }
+Plug 'neovimhaskell/haskell-vim', { 'for': 'haskell' }
+Plug 'cespare/vim-toml', { 'for': 'toml' }
+Plug 'rust-lang/rust.vim', { 'for': 'rust' }
 Plug 'isobit/vim-caddyfile'
 Plug 'hashivim/vim-terraform', { 'for': 'terraform' }
-Plug 'prabirshrestha/async.vim'
-Plug 'liuchengxu/vista.vim'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'udalov/kotlin-vim'
 Plug 'styled-components/vim-styled-components'
 Plug 'rhysd/vim-llvm'
+Plug 'chase/vim-ansible-yaml', { 'for': 'yaml' }
+Plug 'octol/vim-cpp-enhanced-highlight', { 'for': 'cpp' }
+Plug 'the-lambda-church/coquille', { 'for': 'coq' }
+Plug 'posva/vim-vue', { 'for': 'vue' }
+
+"Plug 'nathanaelkane/vim-indent-guides'
 call plug#end()
 
 let g:rehash256 = 1
@@ -263,7 +303,7 @@ let g:coc_global_extensions = [
 nmap <silent> [g <Plug>(coc-diagnostic-prev)
 nmap <silent> ]g <Plug>(coc-diagnostic-next)
 nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gc <Plug>(coc-declaration)
+"nmap <silent> gc <Plug>(coc-declaration)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
