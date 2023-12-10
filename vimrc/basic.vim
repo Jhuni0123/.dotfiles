@@ -349,6 +349,24 @@ nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list.
 nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
 
+" Insert <tab> when previous text is space, refresh completion if not.
+function! CheckBackspace() abort
+let col = col('.') - 1
+return !col || getline('.')[col - 1] =~ '\s'
+endfunction
+inoremap <silent><expr> <TAB>
+\ coc#pum#visible() ? coc#pum#next(1):
+\ CheckBackspace() ? "\<Tab>" :
+\ coc#refresh()
+inoremap <expr><S-TAB> coc#pum#visible ? coc#pum#prev(1) : "\<C-h>"
+if has('nvim')
+inoremap <silent><expr> <c-space> coc#refresh()
+else
+inoremap <silent><expr> <c-@> coc#refresh()
+endif
+
+inoremap <expr> <cr> coc#pum#visible() ? coc#_select_confirm() : "\<CR>"
+
 " Fix mouse protocol in large terminal
 " https://iterm2.com/faq.html
 if has('mouse_sgr')
