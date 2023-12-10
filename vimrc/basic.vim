@@ -265,9 +265,9 @@ command RIO  wall|!g++ -O2 -std=c++2a -Wall -lm %:r.cpp -o %:r && ./%:r < %:r.in
 command RI   wall|!g++ -O2 -std=c++2a -Wall -lm %:r.cpp -o %:r && ./%:r < %:r.in
 command R    wall|!g++ -O2 -std=c++2a -Wall -lm %:r.cpp -o %:r && ./%:r
 
-command RRIO wall|!rustc %:r.rs && ./%:r < %:r.in > %:r.out
-command RRI  wall|!rustc %:r.rs && ./%:r < %:r.in
-command RR   wall|!rustc %:r.rs && ./%:r
+command RRIO wall|!rustc %:r.rs -o %:r && ./%:r < %:r.in > %:r.out
+command RRI  wall|!rustc %:r.rs -o %:r && ./%:r < %:r.in
+command RR   wall|!rustc %:r.rs -o %:r && ./%:r
 
 command PRIO wall|!python3 %:r.py < %:r.in > %:r.out
 command PRIOE wall|!python3 %:r.py < %:r.in > %:r.out 2> %:r.err
@@ -286,6 +286,7 @@ command TSR wall|!tsc %:r.ts && node %:r.js
 
 command SCRIO wall|!scala %:r.scala < %:r.in > %:r.out
 
+command GSRIO wall|!ruby ~/.local/share/golfscript.rb %:r.gs < %:r.in > %:r.out
 
 " Coc
 let g:coc_node_path = $COC_NODE_PATH
