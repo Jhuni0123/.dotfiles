@@ -203,3 +203,4 @@ fi
 source ${DOTFILES_HOME}/zshrc/aliases.zsh
 source ${DOTFILES_HOME}/zshrc/aws_profile.zsh
 source ${DOTFILES_HOME}/zshrc/p10k.zsh
+source ${DOTFILES_HOME}/zshrc/boj.zsh
