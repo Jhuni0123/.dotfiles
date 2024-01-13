@@ -170,7 +170,7 @@ Plug 'styled-components/vim-styled-components'
 Plug 'rhysd/vim-llvm'
 Plug 'chase/vim-ansible-yaml', { 'for': 'yaml' }
 Plug 'octol/vim-cpp-enhanced-highlight', { 'for': 'cpp' }
-Plug 'the-lambda-church/coquille', { 'for': 'coq' }
+Plug 'whonore/Coqtail', { 'for': 'coq' }
 Plug 'posva/vim-vue', { 'for': 'vue' }
 
 "Plug 'nathanaelkane/vim-indent-guides'
@@ -375,3 +375,16 @@ if has('mouse_sgr')
 endif
 
 tnoremap <expr> <Esc> (&filetype == "fzf") ? "<Esc>" : "<c-\><c-n>"
+
+autocmd FileType coq nnoremap <silent> <C-Down> :CoqNext<CR>
+autocmd FileType coq nnoremap <silent> <C-Up> :CoqUndo<CR>
+autocmd FileType coq nnoremap <silent> <C-Right> :CoqToLine<CR>
+
+autocmd FileType coq inoremap <silent> <C-Down> <c-o>:CoqNext<CR>
+autocmd FileType coq inoremap <silent> <C-Up> <c-o>:CoqUndo<CR>
+autocmd FileType coq inoremap <silent> <C-Right> <c-o>:CoqToLine<CR>
+autocmd FileType coq inoremap <silent> . .<c-o>:CoqToLine<CR>
+autocmd FileType coq inoremap <silent> + +<c-o>:CoqToLine<CR>
+autocmd FileType coq inoremap <silent> - -<c-o>:CoqToLine<CR>
+autocmd FileType coq inoremap <silent> { {<c-o>:CoqToLine<CR>
+autocmd FileType coq inoremap <silent> } }<c-o>:CoqToLine<CR>
